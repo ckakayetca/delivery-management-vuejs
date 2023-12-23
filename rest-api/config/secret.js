@@ -1,1 +1,1 @@
-exports.SECRET = '123string';
+exports.SECRET = 'cDQyuQASyxAnzWLW6jT55ZEHfJLp437fXxPt51FhYYg';
