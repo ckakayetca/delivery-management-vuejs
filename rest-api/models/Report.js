@@ -11,6 +11,10 @@ const restaurantsList = ['Pirin',
 
 const reportSchema = new mongoose.Schema(
     {
+        date: {
+            type: Date,
+            required: true,
+        },
         restaurant: {
             type: String,
             required: true,
