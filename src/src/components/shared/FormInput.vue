@@ -32,15 +32,22 @@ export default {
 <template>
     <div class="form-control">
         <label :for="field">{{ label }} <span v-if="required">*</span></label>
-        <slot>
-            <input :type="type" :id="field" :required="required" :value="modelValue" @input="onChange"
-                @blur="v$.formData[field].$touch">
-        </slot>
+
+        <select v-if="type == 'select'" :id="field" :required="required" :value="modelValue" @input="onChange"
+            @blur="v$.formData[field].$touch">
+            <slot>
+                <option> No options </option>
+            </slot>
+        </select>
+
+        <input v-else :type="type" :id="field" :required="required" :value="modelValue" @input="onChange"
+            @blur="v$.formData[field].$touch">
+
+
         <template v-if="v$?.formData[field]">
             <p class="error" v-for="error in v$.formData[field].$errors"> {{ error.$message }}</p>
         </template>
     </div>
-
 </template>
 
 

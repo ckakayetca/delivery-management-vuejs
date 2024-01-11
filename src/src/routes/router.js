@@ -20,6 +20,7 @@ const routes = [
 ]
 
 const router = createRouter({
+    useHash: true,
     history: createWebHistory(),
     routes
 });
