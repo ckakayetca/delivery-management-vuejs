@@ -6,11 +6,10 @@ import CoreHeader from './components/core/CoreHeader.vue';
 <template>
   <CoreHeader></CoreHeader>
   <div class="container" id="main">
-    <article>Hello</article>
-    <button>Hello</button>
+    <router-view></router-view>
   </div>
   <CoreFooter></CoreFooter>
 </template>
 
-<style scoped>
+<style>
 </style>

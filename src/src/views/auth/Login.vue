@@ -6,7 +6,7 @@ export default {
 
 <template>
     <div>
-
+        Login
     </div>
 </template>
 

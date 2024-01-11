@@ -6,7 +6,7 @@ export default {
 
 <template>
     <div>
-
+        My Reports
     </div>
 </template>
 
