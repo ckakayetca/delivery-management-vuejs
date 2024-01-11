@@ -2,6 +2,8 @@
 import FormInput from '../../components/shared/FormInput.vue';
 import useVuelidate from '@vuelidate/core';
 import * as vuelidators from '@vuelidate/validators';
+import { register } from '../../api/api.js'
+
 
 export default {
     components: { FormInput },
@@ -54,6 +56,12 @@ export default {
 
             if(!res) {
                 return
+            }
+
+            const response = await register(this.formData);
+
+            if(response.status ==  200) {
+                this.$router.push('/auth/login');
             }
         }
     }
