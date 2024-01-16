@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema(
                 message: (v) => `Invalid role!`
             }
         },
+        tel: {
+            type: String,
+            required: true,
+        },
         reports: [
             {
                 type: mongoose.Types.ObjectId,
