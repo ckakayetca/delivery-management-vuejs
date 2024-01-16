@@ -84,3 +84,5 @@ router.post('/create', isAuth, async (req, res) => {
         console.log(error.message)
     }
 });
+
+module.exports = router;
