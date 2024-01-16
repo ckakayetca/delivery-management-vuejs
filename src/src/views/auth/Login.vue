@@ -57,7 +57,7 @@ export default {
         <fieldset>
             <FormInput field="username" label="Потребителско име" required v-model="formData.username" :v$="v$"></FormInput>
 
-            <FormInput field="password" label="Парола" required v-model="formData.password" :v$="v$"></FormInput>
+            <FormInput type="password" field="password" label="Парола" required v-model="formData.password" :v$="v$"></FormInput>
 
             <button>Вход</button>
         </fieldset>
