@@ -74,7 +74,6 @@ router.delete('/:id', isAuth, async (req, res) => {
 router.post('/create', isAuth, async (req, res) => {
     console.log('POST /REPORTS/CREATE');
     const data = req.body;
-    console.log(req.user)
     try {
         let id = req.user._id;
         const post = await manager.create(data, id);

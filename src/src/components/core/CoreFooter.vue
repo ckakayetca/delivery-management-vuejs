@@ -2,11 +2,18 @@
     <footer class="core-footer">
         <h1 class="firma">EG Solutions LTD</h1>
     </footer>
+    <button @click="verify">Verify token</button>
+    <button @click="getProfile">Get Profile</button>
 </template>
 
 <script>
-    export default {
+    import { verifyToken, getProfile } from '../../api/api';
 
+    export default {
+        methods: {
+            verify: verifyToken,
+            getProfile: getProfile,
+        }
     }
 </script>
 

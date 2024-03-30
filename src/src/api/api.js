@@ -63,5 +63,10 @@ export async function getProfile() {
 
 // PUT /users/profile
 export async function editProfile() {
-    return await axios.put('/users/profile', data)
+    return await axios.put('/users/profile', data);
+}
+
+// GET /auth
+export async function verifyToken() {
+    return await axios.get('/users');
 }

@@ -5,6 +5,7 @@ export const useAuthStore = defineStore('auth', {
     state: () => ({
         user: emptyUser,
         isLoggedIn: false,
+        isAdmin: false,
     }),
     actions: {
         setUser(data) {
@@ -12,6 +13,8 @@ export const useAuthStore = defineStore('auth', {
 
             if(this.user) {
                 this.isLoggedIn = true;
+
+                this.isAdmin = this.user.role === 'admin' ? true : false;
             } else {
                 this.isLoggedIn = false;
             }

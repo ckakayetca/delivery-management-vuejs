@@ -37,7 +37,7 @@ exports.login = async (userData) => {
 // get profile info
 
 exports.getInfo = async (id) => {
-	let user = await User.findOne({ _id: id }, { password: 0, __v: 0 }).populate('appointments');
+	let user = await User.findOne({ _id: id }, { password: 0, __v: 0 }).populate('reports');
 	if (!user) {
 	    throw new Error('No such user!');
 	}
@@ -49,3 +49,14 @@ exports.getInfo = async (id) => {
 exports.editInfo = async (id, data) => User.findByIdAndUpdate(id, data).then((user) => {
 	return user
 })
+
+exports.verifyToken = (token) => {
+	try {
+		const decoded = jwt.verify(token, SECRET)
+
+		return 'valid'
+	} catch (error) {
+		return  'invalid'
+	}
+
+}

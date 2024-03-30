@@ -1,11 +1,26 @@
 const router = require('express').Router();
-const { isAuth } = require('../middlewares/auth');
+const { isAuth, auth } = require('../middlewares/auth');
 const {
 	register,
 	login,
 	getInfo,
 	editInfo,
+	verifyToken
 } = require('../managers/userManager');
+
+// verify jwt
+
+router.get('/', async (req, res) => {
+	const token = req.cookies['auth']
+	if (!token) {
+		console.log('no token')
+		res.status(200).send({ message: 'No token!' });
+	} else {
+		let verify = verifyToken(token);
+		console.log(verify)
+		res.status(200).json(verify)
+	}
+})
 
 // login
 
@@ -27,7 +42,7 @@ router.post('/login', async (req, res) => {
 router.post('/register', async (req, res) => {
 	try {
 		console.log('register')
-		const { username, password, role, tel, name} = req.body;
+		const { username, password, role, tel, name } = req.body;
 
 		let user = await register({ username, password, role, tel, name });
 		res.status(200).json(user)
@@ -50,11 +65,12 @@ router.get('/logout', (req, res) => {
 // get profile info
 
 router.get('/profile', async (req, res) => {
+	console.log(req.user, 'here')
 	const id = req.user?._id;
-
+	console.log(id)
 	try {
 		let user = await getInfo(id);
-		console.log(user)
+		console.log(user, 'userController get profile')
 		res.status(200).json(user);
 	} catch (error) {
 		console.log(error.message)
@@ -77,5 +93,6 @@ router.put('/profile', isAuth, async (req, res) => {
 		res.send(error);
 	}
 });
+
 
 module.exports = router;

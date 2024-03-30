@@ -2,12 +2,14 @@
 import FormInput from '../../components/shared/FormInput.vue'
 import useVuelidate from '@vuelidate/core'
 import { login } from '../../api/api'
+import { useAuthStore } from '../../stores/authstore'
 
 export default {
     components: { FormInput },
     setup() {
         return {
             v$: useVuelidate(),
+            authStore: useAuthStore(),
         }
     },
     data() {
@@ -29,6 +31,8 @@ export default {
             const response = await login(this.formData);
 
             if(response.status == 200) {
+                const user = response.data;
+                this.authStore.setUser(user);
                 this.$router.push('/')
             }
         },
