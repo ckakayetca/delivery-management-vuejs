@@ -2,7 +2,7 @@
 import FormInput from '../../components/shared/FormInput.vue'
 import useVuelidate from '@vuelidate/core'
 import { login } from '../../api/api'
-import { useAuthStore } from '../../stores/authstore'
+import { useAuthStore } from '../../stores/authStore'
 
 export default {
     components: { FormInput },
@@ -80,4 +80,4 @@ export default {
 .login .form-control {
     margin: 1em;
 }
-</style>
+</style>../../stores/authStore

@@ -16,6 +16,7 @@ const routes = [
     { path: '/auth/register', component: Register },
     { path: '/my-reports', component: Reports },
     { path: '/error', name: 'error', component: Error, props: true },
+    { path: '/admin-panel', name: 'admin-panel', component: AdminPanel },
     { path: '/:pathMatch(.*)*', component: NotFound }
 ]
 

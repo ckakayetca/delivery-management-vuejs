@@ -2,12 +2,7 @@ const mongoose = require('mongoose');
 
 const restaurantsList = ['Pirin',
     'Goce Delchev',
-    'Lozenets',
-    'Cherkovna',
-    'Studentski 1',
-    'Studentski 2',
-    'Hristo Vakarelski',
-    'Mladost']
+    'Lozenets']
 
 const reportSchema = new mongoose.Schema(
     {

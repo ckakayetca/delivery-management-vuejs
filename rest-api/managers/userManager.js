@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
-const { SECRET } = require('../config/secret')
 
 // register
 
@@ -29,7 +28,7 @@ exports.login = async (userData) => {
 
     user = JSON.parse(JSON.stringify(user))
     const { password, __v, ...userDetails} = user
-	const token = jwt.sign(payload, SECRET, { expiresIn: '7d' });
+	const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' });
 
 	return [token, userDetails];
 };
@@ -52,7 +51,7 @@ exports.editInfo = async (id, data) => User.findByIdAndUpdate(id, data).then((us
 
 exports.verifyToken = (token) => {
 	try {
-		const decoded = jwt.verify(token, SECRET)
+		const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
 		return 'valid'
 	} catch (error) {

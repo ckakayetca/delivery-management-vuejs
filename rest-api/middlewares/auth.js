@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { SECRET } = require('../config/secret')
 const User = require('../models/User');
 
 exports.auth = async (req, res, next) => {
@@ -8,7 +7,7 @@ exports.auth = async (req, res, next) => {
 
 	if (token) {
 		try {
-			const decodedToken = jwt.verify(token, SECRET);
+			const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 			console.log(decodedToken._id)
 			let user = await User.findById(decodedToken._id, { password: 0, __v: 0 });
 

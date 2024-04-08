@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 async function connect() {
 
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/delivery-management');
+        await mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_COLLECTION}`);
 
         console.log('db connected')
     } catch (error) {

@@ -1,13 +1,5 @@
-<script>
-export default {
-
-}
-</script>
-
 <template>
-    <div>
-        Error
-    </div>
+  <div>Error</div>
 </template>
 
-<style></style>
+<script setup></script>

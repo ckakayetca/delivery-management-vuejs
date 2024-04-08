@@ -19,6 +19,6 @@ export let emptyUser = {
     name: '',
     tel: '',
     reports: [],
-    role: [],
+    role: '',
     _id: '',
 }

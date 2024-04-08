@@ -11,5 +11,6 @@ import CoreHeader from './components/core/CoreHeader.vue';
   <CoreFooter></CoreFooter>
 </template>
 
-<style>
+<style lang="scss">
+@import 'assets/sass/app.scss';
 </style>

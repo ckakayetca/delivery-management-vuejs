@@ -1,5 +1,5 @@
 <template>
-  <div>Not Found</div>
+  <div>Admin Panel</div>
 </template>
 
 <script setup></script>

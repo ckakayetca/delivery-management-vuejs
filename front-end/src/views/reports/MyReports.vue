@@ -1,13 +1,6 @@
-<script>
-export default {
-
-}
-</script>
-
 <template>
-    <div>
-        My Reports
-    </div>
-</template>
-
-<style></style>
+    <div>My Reports</div>
+  </template>
+  
+  <script setup></script>
+  
