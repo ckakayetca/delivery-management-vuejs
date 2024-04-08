@@ -67,17 +67,3 @@ export default {
         </fieldset>
     </form>
 </template>
-
-<style>
-.login {
-    width: 30em;
-}
-
-.login h1 {
-    text-align: center;
-}
-
-.login .form-control {
-    margin: 1em;
-}
-</style>../../stores/authStore

@@ -7,6 +7,7 @@ import Reports from '../views/reports/Reports.vue';
 import Error from '../views/Error.vue';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue'
+import AdminPanel from '../views/AdminPanel.vue'
 
 const routes = [
     { path: '/', component: Home },
