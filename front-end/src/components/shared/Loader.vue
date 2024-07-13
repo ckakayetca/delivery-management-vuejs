@@ -1,5 +1,5 @@
 <template>
-    <span class="loader"></span>
+    <span class="loader" />
 </template>
 
 <script>
@@ -8,7 +8,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .loader {
     transform: rotateZ(45deg);
     perspective: 1000px;

@@ -33,6 +33,7 @@ router.post('/login', async (req, res) => {
 		res.cookie('auth', token, { httpOnly: false });
 		res.status(200).json(user);
 	} catch (error) {
+		console.log(error)
 		res.status(401).send({ message: error.message });
 	}
 });

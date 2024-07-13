@@ -1,0 +1,27 @@
+.nav-header {
+    padding: 10px;
+    background-color: rgb(15, 34, 49);
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile {
+    display: block;
+}
+
+.desktop {
+    display: none;
+}
+
+@media screen and (max-width > 576px) {
+    .mobile {
+        display: none;
+    }
+    
+    .desktop {
+        display: block;
+    }
+    
+}

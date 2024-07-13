@@ -1,16 +1,10 @@
-.container {
-    min-height: 85vh;
-}
-
 #app {
     display: flex;
     flex-direction: column;
 }
 
 #main {
-    margin-top: 3em;
-    margin-bottom: 3em;
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

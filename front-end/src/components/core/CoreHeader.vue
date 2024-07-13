@@ -1,20 +1,9 @@
-<script>
-import { useAuthStore } from '../../stores/authStore';
-import { mapState } from 'pinia';
+<script setup>
+    import { useAuthStore } from '../../stores/authStore';
 
-export default {
-    setup() {
-        return {
-            authStore: useAuthStore(),
-        }
-    },
-    data() {
+    const authStore = useAuthStore()
 
-    },
-    computed: {
-        ...mapState(useAuthStore, ['isAdmin', 'isLoggedIn', 'user']),
-    }
-}
+
 </script>
 
 <template>
@@ -24,13 +13,21 @@ export default {
                 <li><strong>Delivery Management</strong></li>
             </ul>
             <ul>
-                <template v-if="isLoggedIn">
-                    <li v-if="isAdmin"><a href="#">Отчети</a></li>
-                    <li><a href="#">Нов отчет</a></li>
-                    <li><a href="#">Моите отчети</a></li>
-                    <li><a href="#" role="button">Изход</a></li>
-                </template>
-                <li v-else><a href="#" role="button">Вход</a></li>
+                <ul class="desktop">
+                    <template v-if="authStore.isLoggedIn">
+                        <li v-if="authStore.isAdmin"><a href="#">Отчети</a></li>
+                        <li><a href="#">Нов отчет</a></li>
+                        <li><a href="#">Моите отчети</a></li>
+                        <li><a href="#" role="button">Изход</a></li>
+                    </template>
+                    <li v-else><a href="#" role="button">Вход</a></li>
+                </ul>
+    
+                <ul class="mobile">
+                    <button class="menu-btn">
+                        Menu
+                    </button>
+                </ul>
             </ul>
         </nav>
     </header>
