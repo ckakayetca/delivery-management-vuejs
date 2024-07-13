@@ -4,11 +4,13 @@ import CoreHeader from './components/core/CoreHeader.vue';
 </script>
 
 <template>
-  <CoreHeader></CoreHeader>
-  <div class="container" id="main">
-    <router-view></router-view>
-  </div>
-  <CoreFooter></CoreFooter>
+  <CoreHeader />
+
+  <main class="container"> 
+    <router-view />
+  </main>
+  
+  <CoreFooter />
 </template>
 
 <style lang="scss">
