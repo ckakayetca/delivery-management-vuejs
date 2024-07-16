@@ -1,0 +1,28 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .form-header {
+        text-align: center;
+    }
+
+    .form-content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding-bottom: 30px;
+    }
+
+    .form-footer {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .error {
+        font-size: 14px;
+        color: rgb(222 135 135);
+        margin: 0;
+    }
+}
