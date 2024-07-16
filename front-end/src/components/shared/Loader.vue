@@ -1,5 +1,7 @@
 <template>
-    <span class="loader" />
+    <div class="loader-container">
+        <span class="loader" />
+    </div>
 </template>
 
 <script>
@@ -9,6 +11,13 @@ export default {
 </script>
 
 <style>
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .loader {
     transform: rotateZ(45deg);
     perspective: 1000px;
@@ -92,4 +101,5 @@ export default {
     87% {
         box-shadow: .2em -.2em 0 0 currentcolor;
     }
-}</style>
+}
+</style>
