@@ -1,9 +1,21 @@
 <template>
-  <h1 class="welcome">Добре дошли!</h1>
-  <button class="login-btn">Вход</button>
-  <h3>
-    За да направите нов отчет, натиснете <button class="here">тук</button>
-  </h3>
+  <template v-if="!authStore.isLoggedIn">
+    <h1 class="welcome">Добре дошли!</h1>
+    <router-link :to="{ name: 'Login' }">
+      <button class="login-btn">Вход</button>
+    </router-link>
+  </template>
+
+  <template v-else>
+    <h1 class="welcome">Добре дошъл, {{ authStore.getUser.name.split(' ')[0] }}!</h1>
+    <button>Моите отчети</button>
+    <button>Нов отчет</button>
+  </template>
 </template>
 
-<script setup></script>
+<script setup>
+import { useAuthStore } from '../stores/authStore';
+
+
+const authStore = useAuthStore();
+</script>
