@@ -1,69 +1,75 @@
-<script>
-import FormInput from '../../components/shared/FormInput.vue'
-import useVuelidate from '@vuelidate/core'
-import { login } from '../../api/api'
-import { useAuthStore } from '../../stores/authStore'
-
-export default {
-    components: { FormInput },
-    setup() {
-        return {
-            v$: useVuelidate(),
-            authStore: useAuthStore(),
-        }
-    },
-    data() {
-        return {
-            formData: {
-                username: '',
-                password: '',
-            }
-        }
-    },
-    methods: {
-        async onSubmit() {
-            const res = await this.v$.$validate();
-
-            if (!res) {
-                return
-            }
-
-            const response = await login(this.formData);
-
-            if(response.status == 200) {
-                const user = response.data;
-                this.authStore.setUser(user);
-                this.$router.push('/')
-            }
-        },
-    },
-    validations() {
-        return {
-            formData: {
-                username: {
-                    type: String,
-                    required: true,
-                },
-                password: {
-                    type: String,
-                    required: true,
-                },
-            }
-        }
-    }
-}
-</script>
-
 <template>
     <form action="" class="login" @submit.prevent="onSubmit">
-        <h1>Login</h1>
+        <div class="form-header">
+            <h1 class="login-title">Вход</h1>
+        </div>
 
-        <fieldset>
-            <FormInput field="username" label="Потребителско име" required v-model="formData.username" :v$="v$"></FormInput>
+        <div class="form-content">
+            <FormInput name="username" label="Потребителско име" :error="errors.username" required v-model="username" />
 
-            <FormInput type="password" field="password" label="Парола" required v-model="formData.password" :v$="v$"></FormInput>
+            <FormInput name="password" label="Парола" :error="errors.password" type="password" required v-model="password" />
+        </div>
 
-            <button>Вход</button>
-        </fieldset>
+        <div class="form-footer">
+            <button @click.prevent="onSubmit">Вход</button>
+        </div>
     </form>
 </template>
+    
+<script setup>
+import FormInput from '../../components/shared/FormInput.vue'
+import { useAuthStore } from '../../stores/authStore'
+
+import { useForm, useField } from 'vee-validate';
+
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const authStore = useAuthStore()
+
+const validationSchema = {
+    username: (value) => {
+        if (value === null || value === undefined || value === '') {
+            return 'Потребителското име е задължително'
+        }
+
+        return true
+    },
+    password: (value) => {
+        if (value === null || value === undefined || value === '') {
+            return 'Паролата е задължителна'
+        }
+
+        return true
+    }
+}
+
+const { setErrors, setFieldValue, errors, meta } = useForm({
+    validationSchema
+})
+
+const { value: username } = useField('username')
+const { value: password } = useField('password')
+
+async function onSubmit() {
+    if (!meta.value.valid) return
+
+    try {
+        let formData = {
+            username: username.value,
+            password: password.value
+        }
+
+        const response = await authStore.login(formData)
+
+        if (response === 200) {
+            router.push({ name: 'Home' })
+        }
+    } catch (error) {
+        console.log(error)
+        setErrors(error.response.data)
+    }
+}
+
+
+</script>
