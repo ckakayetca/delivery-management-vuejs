@@ -26,8 +26,8 @@ exports.login = async (userData) => {
 		_id: user._id,
 	};
 
-    user = JSON.parse(JSON.stringify(user))
-    const { password, __v, ...userDetails} = user
+	user = JSON.parse(JSON.stringify(user))
+	const { password, __v, ...userDetails } = user
 	const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' });
 
 	return [token, userDetails];
@@ -38,9 +38,9 @@ exports.login = async (userData) => {
 exports.getInfo = async (id) => {
 	let user = await User.findOne({ _id: id }, { password: 0, __v: 0 }).populate('reports');
 	if (!user) {
-	    throw new Error('No such user!');
+		throw new Error('No such user!');
 	}
-    return user;
+	return user;
 };
 
 // edit profile info
@@ -55,7 +55,7 @@ exports.verifyToken = (token) => {
 
 		return 'valid'
 	} catch (error) {
-		return  'invalid'
+		return 'invalid'
 	}
 
 }

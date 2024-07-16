@@ -34,7 +34,7 @@ router.post('/login', async (req, res) => {
 		res.status(200).json(user);
 	} catch (error) {
 		console.log(error)
-		res.status(401).send({ message: error.message });
+		res.status(401).json({ message: error.message });
 	}
 });
 
@@ -45,11 +45,14 @@ router.post('/register', async (req, res) => {
 		console.log('register')
 		const { username, password, role, tel, name } = req.body;
 
-		let user = await register({ username, password, role, tel, name });
-		res.status(200).json(user)
+		await register({ username, password, role, tel, name });
+
+		res.status(200).json({
+			message: 'Успешна регистрация!',
+		})
 	} catch (error) {
 		console.log(error)
-		res.send({ message: error.message });
+		res.json({ message: error.message });
 	}
 });
 
@@ -59,7 +62,7 @@ router.get('/logout', (req, res) => {
 	try {
 		res.clearCookie('auth').status(204).send({ message: 'Logged out!' });
 	} catch (error) {
-		res.send(error);
+		res.json({ message: error });
 	}
 });
 
@@ -91,7 +94,7 @@ router.put('/profile', isAuth, async (req, res) => {
 
 		res.status(200).json(newUser);
 	} catch (error) {
-		res.send(error);
+		res.status(401).json({ message: error });
 	}
 });
 
