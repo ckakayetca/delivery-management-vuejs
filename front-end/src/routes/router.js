@@ -10,20 +10,21 @@ import NotFound from '../views/NotFound.vue'
 import AdminPanel from '../views/AdminPanel.vue'
 
 const routes = [
-    { path: '/', component: Home },
-    { path: '/reports', component: Reports },
-    { path: '/reports/create', component: NewReport },
-    { path: '/auth/login', component: Login },
-    { path: '/auth/register', component: Register },
-    { path: '/my-reports', component: Reports },
-    { path: '/error', name: 'error', component: Error, props: true },
-    { path: '/admin-panel', name: 'admin-panel', component: AdminPanel },
+    { path: '/', name: 'Home', component: Home },
+    { path: '/reports', name: 'ReportsList', component: Reports },
+    { path: '/reports/create', name: 'NewReport', component: NewReport },
+    { path: '/auth/login', name: 'Login', component: Login },
+    { path: '/auth/register', name: 'Register', component: Register },
+    { path: '/my-reports', name: 'MyReports', component: Reports },
+    { path: '/error', name: 'Error', component: Error, props: true },
+    { path: '/admin-panel', name: 'AdminPanel', component: AdminPanel },
     { path: '/:pathMatch(.*)*', component: NotFound }
 ]
 
 const router = createRouter({
     useHash: true,
     history: createWebHistory(),
+    linkActiveClass: 'active',
     routes
 });
 
