@@ -1,52 +1,48 @@
 <template>
     <div class="form-control">
-        <label :for="field">{{ label }} <span v-if="required">*</span></label>
+        <label :for="name">{{ label }} <span v-if="required">*</span></label>
 
-        <select v-if="type == 'select'" :id="field" :required="required" :value="modelValue" @input="onChange"
-            @blur="v$.formData[field].$touch">
-            <slot>
-                <option> No options </option>
-            </slot>
-        </select>
+        <input :type="type" :id="name" :required="required" :name="name" :value="modelValue" v-bind="$attrs" @input="onChange">
 
-        <input v-else :type="type" :id="field" :required="required" :value="modelValue" @input="onChange"
-            @blur="v$.formData[field].$touch">
-
-
-        <template v-if="v$?.formData[field]">
-            <p class="error" v-for="error in v$.formData[field].$errors"> {{ error.$message }}</p>
+        <template v-if="error">
+            <p class="error"> {{ error }}</p>
         </template>
     </div>
 </template>
 
-<script>
-export default {
-    props: {
-        v$: {
-            type: Object
-        },
-        modelValue: {},
-        field: {
-            required: true,
-            type: String,
-        },
-        label: {
-            required: true,
-            type: String,
-        },
-        type: {
-            type: String,
-        },
-        required: {
-            type: Boolean,
-        }
+<script setup>
+const emit = defineEmits(['update:modelValue'])
+
+const props = defineProps({
+    modelValue: {
+        type: String,
+        default: null
     },
-    emits: ['update:modelValue'],
-    methods: {
-        onChange(event) {
-            this.$emit('update:modelValue', event.target.value);
-        }
+    label: {
+        type: String,
+        default: null
     },
+    error: {
+        type: String,
+        default: null,
+    },
+    type: {
+        type: String,
+        default: 'text'
+    },
+    name: {
+        type: String,
+        required: true,
+        default: null
+    },
+    required: {
+        type: Boolean,
+        default: false
+    }
+})
+
+function onChange(event) {
+    emit('update:modelValue', event.target.value)
 }
 </script>
 
