@@ -1,5 +1,5 @@
 <template>
-  <div>Admin Panel</div>
+    <div>Admin Panel</div>
 </template>
 
 <script setup></script>

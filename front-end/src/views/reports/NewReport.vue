@@ -1,5 +1,5 @@
 <template>
-  <div>New Report</div>
+    <div>New Report</div>
 </template>
 
 <script setup></script>

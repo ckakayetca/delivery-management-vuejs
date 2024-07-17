@@ -1,4 +1,3 @@
-
 <template>
     <header class="nav-header">
         <nav>
@@ -15,36 +14,36 @@
                     <li><a href="#">Моите отчети</a></li>
                     <li><button @click="onLogout">Изход</button></li>
                 </template>
-                <li v-else><a href="#" role="button">Вход</a></li>
+                <li v-else>
+                    <a
+href="#" role="button"
+>Вход</a>
+                </li>
             </ul>
 
             <ul class="mobile">
                 <li>
-                <button class="menu-btn">
-                    Menu
-                </button>
+                    <button class="menu-btn">Menu</button>
                 </li>
             </ul>
         </nav>
     </header>
-    
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'vue-router';
-import { useAuthStore } from '../../stores/authStore';
+	import { useRoute, useRouter } from 'vue-router'
+	import { useAuthStore } from '../../stores/authStore'
 
-const route = useRoute()
-const router = useRouter()
+	const route = useRoute()
+	const router = useRouter()
 
-const authStore = useAuthStore()
+	const authStore = useAuthStore()
 
-async function onLogout() {
-    await authStore.logout()
+	async function onLogout() {
+		await authStore.logout()
 
-    if (route.name !== 'Login') {
-        router.push({ name: 'Login' })
-    }
-}
-
+		if (route.name !== 'Login') {
+			router.push({ name: 'Login' })
+        }
+	}
 </script>

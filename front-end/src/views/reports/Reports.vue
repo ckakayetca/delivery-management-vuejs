@@ -1,6 +1,5 @@
 <template>
     <div>Reports</div>
-  </template>
-  
-  <script setup></script>
-  
+</template>
+
+<script setup></script>

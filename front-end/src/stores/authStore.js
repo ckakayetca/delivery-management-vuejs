@@ -69,11 +69,11 @@ export const useAuthStore = defineStore('auth', {
                 return error.response.status
                 // TODO: implement proper error handling
             }
-        }
+        },
     },
     getters: {
         getUser() {
             return this.user
         },
-    }
+    },
 })

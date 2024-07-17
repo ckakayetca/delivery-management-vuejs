@@ -6,14 +6,13 @@ import axios from '@/config/axios'
  * @class
  */
 class AuthService {
-
     /**
      * Login
-     * @param {Object} data - The login data 
+     * @param {Object} data - The login data
      * @returns {Promise} - The promise object of the API call
      */
     async login(data) {
-        return await axios.post('users/login', data);
+        return await axios.post('users/login', data)
     }
 
     /**
@@ -22,7 +21,7 @@ class AuthService {
      * @returns {Promise} - The promise object of the API call
      */
     async register(data) {
-        return await axios.post('users/register', data);
+        return await axios.post('users/register', data)
     }
 
     /**
@@ -30,15 +29,15 @@ class AuthService {
      * @returns {Promise} - The promise object of the API call
      */
     async logout() {
-        return await axios.get('users/logout');
+        return await axios.get('users/logout')
     }
 
     /**
-     * Get Profile  
+     * Get Profile
      * @returns {Promise} - The promise object of the API call
      */
     async getProfile() {
-        return await axios.get('users/profile');
+        return await axios.get('users/profile')
     }
 
     /**
@@ -46,7 +45,7 @@ class AuthService {
      * @returns {Promise} - The promise object of the API call
      */
     async editProfile() {
-        return await axios.put('users/profile', data);
+        return await axios.put('users/profile', data)
     }
 
     /**
@@ -54,7 +53,7 @@ class AuthService {
      * @returns {Promise} - The promise object of the API call
      */
     async verifyToken() {
-        return await axios.get('users');
+        return await axios.get('users')
     }
 }
 
