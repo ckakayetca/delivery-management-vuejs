@@ -1,4 +1,5 @@
-@import "@picocss/pico/css/pico";
+@import "variables";
+@import "plugins/app";
 @import "base/app";
 @import "views/app";
 @import "components/app";

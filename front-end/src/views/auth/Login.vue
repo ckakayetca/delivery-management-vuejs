@@ -18,7 +18,8 @@
         </div>
 
         <div class="form-footer">
-            <button @click.prevent="onSubmit">Вход</button>
+            <button class="primary" @click.prevent="onSubmit">Вход</button>
+            <button class="secondary" @click.prevent="onSubmit">Вход</button>
         </div>
     </form>
 </template>

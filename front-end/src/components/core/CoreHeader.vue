@@ -12,14 +12,18 @@
                     <li v-if="authStore.isAdmin"><a href="#">Отчети</a></li>
                     <li><a href="#">Нов отчет</a></li>
                     <li><a href="#">Моите отчети</a></li>
-                    <li><button @click="onLogout">Изход</button></li>
+                    <li><button class="no-border" @click="onLogout">Изход</button></li>
                 </template>
                 <li v-else>
-                    <a href="#" role="button">Вход</a>
+                    <router-link :to="{ name: 'Login' }">
+                        <button class="no-border">Вход</button>
+                    </router-link>
                 </li>
             </ul>
 
             <ul class="mobile">
+                <li><button class="no-border" @click="onLogout">Изход</button></li>
+
                 <li>
                     <button class="menu-btn">Menu</button>
                 </li>

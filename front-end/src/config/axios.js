@@ -8,7 +8,9 @@ axios.interceptors.request.use(
 
         return config
     },
-    function (error) {},
+    function (error) {
+        return Promise.reject(error)
+    },
 )
 
 export default axios

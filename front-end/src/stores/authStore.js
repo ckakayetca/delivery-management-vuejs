@@ -1,7 +1,10 @@
 import { defineStore } from 'pinia'
 import { emptyUser } from '../utils/utils'
+import { useToast } from 'vue-toastification'
 
 import AuthService from '@/services/AuthService'
+
+const toast = useToast()
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -50,13 +53,16 @@ export const useAuthStore = defineStore('auth', {
                 if (response.status == 200) {
                     const user = response.data
                     this.setUser(user)
-                } else {
-                    console.log('Expected status 200, got ' + response.status)
-                    console.log('Response data: ', response.data)
+
+                    return response.status
                 }
+
+                toast.error('Грешно потребителско име или парола!')
 
                 return response.status
             } catch (error) {
+                toast.error('Грешно потребителско име или парола!')
+
                 return error.response.status
             }
         },

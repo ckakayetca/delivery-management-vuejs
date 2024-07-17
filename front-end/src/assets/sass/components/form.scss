@@ -2,9 +2,11 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
 
     .form-header {
         text-align: center;
+        padding: 20px 0;
     }
 
     .form-content {
@@ -24,5 +26,27 @@ form {
         font-size: 14px;
         color: rgb(222 135 135);
         margin: 0;
+    }
+
+    .form-control {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid;
+            font-size: 14px;
+            color: $black;
+
+            &:focus {
+                outline: none;
+            }
+        }
     }
 }
