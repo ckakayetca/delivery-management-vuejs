@@ -5,7 +5,7 @@
         </div>
 
         <div class="form-content">
-            <FormInput name="username" label="Потребителско име" v-model="username" :error="errors.username" required />
+            <FormInput v-model="username" name="username" label="Потребителско име" :error="errors.username" required />
 
             <FormInput
                 v-model="password"
@@ -24,57 +24,57 @@
 </template>
 
 <script setup>
-	import FormInput from '../../components/shared/FormInput.vue'
-	import { useAuthStore } from '../../stores/authStore'
+    import FormInput from '../../components/shared/FormInput.vue'
+    import { useAuthStore } from '../../stores/authStore'
 
-	import { useForm, useField } from 'vee-validate'
+    import { useForm, useField } from 'vee-validate'
 
-	import { useRouter } from 'vue-router'
+    import { useRouter } from 'vue-router'
 
-	const router = useRouter()
-	const authStore = useAuthStore()
+    const router = useRouter()
+    const authStore = useAuthStore()
 
-	const validationSchema = {
+    const validationSchema = {
         username: (value) => {
-			if (value === null || value === undefined || value === '') {
+            if (value === null || value === undefined || value === '') {
                 return 'Потребителското име е задължително'
-			}
+            }
 
             return true
         },
-		password: (value) => {
-			if (value === null || value === undefined || value === '') {
+        password: (value) => {
+            if (value === null || value === undefined || value === '') {
                 return 'Паролата е задължителна'
-			}
-
-			return true
-        },
-	}
-
-	const { setErrors, setFieldValue, errors, meta } = useForm({
-		validationSchema,
-	})
-
-	const { value: username } = useField('username')
-	const { value: password } = useField('password')
-
-	async function onSubmit() {
-		if (!meta.value.valid) return
-
-		try {
-			let formData = {
-                username: username.value,
-				password: password.value,
             }
 
-			const response = await authStore.login(formData)
+            return true
+        },
+    }
+
+    const { setErrors, setFieldValue, errors, meta } = useForm({
+        validationSchema,
+    })
+
+    const { value: username } = useField('username')
+    const { value: password } = useField('password')
+
+    async function onSubmit() {
+        if (!meta.value.valid) return
+
+        try {
+            let formData = {
+                username: username.value,
+                password: password.value,
+            }
+
+            const response = await authStore.login(formData)
 
             if (response === 200) {
-				router.push({ name: 'Home' })
-			}
-		} catch (error) {
-			console.log(error)
-			setErrors(error.response.data)
+                router.push({ name: 'Home' })
+            }
+        } catch (error) {
+            console.log(error)
+            setErrors(error.response.data)
         }
-	}
+    }
 </script>

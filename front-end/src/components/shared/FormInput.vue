@@ -10,7 +10,7 @@
             :value="modelValue"
             v-bind="$attrs"
             @input="onChange"
-        >
+        />
 
         <template v-if="error">
             <p class="error">{{ error }}</p>
@@ -19,37 +19,37 @@
 </template>
 
 <script setup>
-	const emit = defineEmits(['update:modelValue'])
+    const emit = defineEmits(['update:modelValue'])
 
-	const props = defineProps({
+    const props = defineProps({
         modelValue: {
-			type: String,
-			default: null,
-		},
-		label: {
-			type: String,
-			default: null,
-		},
-		error: {
-			type: String,
-			default: null,
-		},
-		type: {
-			type: String,
-			default: 'text',
-		},
-		name: {
-			type: String,
-			required: true,
-			default: null,
+            type: String,
+            default: null,
         },
-		required: {
-			type: Boolean,
-			default: false,
+        label: {
+            type: String,
+            default: null,
         },
-	})
+        error: {
+            type: String,
+            default: null,
+        },
+        type: {
+            type: String,
+            default: 'text',
+        },
+        name: {
+            type: String,
+            required: true,
+            default: null,
+        },
+        required: {
+            type: Boolean,
+            default: false,
+        },
+    })
 
-	function onChange(event) {
-		emit('update:modelValue', event.target.value)
-	}
+    function onChange(event) {
+        emit('update:modelValue', event.target.value)
+    }
 </script>

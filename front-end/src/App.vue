@@ -15,19 +15,19 @@
 </template>
 
 <script setup>
-	import { ref } from 'vue'
+    import { ref } from 'vue'
 
-	import CoreFooter from './components/core/CoreFooter.vue'
-	import CoreHeader from './components/core/CoreHeader.vue'
+    import CoreFooter from './components/core/CoreFooter.vue'
+    import CoreHeader from './components/core/CoreHeader.vue'
 
-	import { useAuthStore } from '@/stores/authStore'
+    import { useAuthStore } from '@/stores/authStore'
 
-	const authStore = useAuthStore()
-	const isLoading = ref(false)
+    const authStore = useAuthStore()
+    const isLoading = ref(false)
 
-	authStore.init().then(() => {
-		isLoading.value = false
-	})
+    authStore.init().then(() => {
+        isLoading.value = false
+    })
 </script>
 
 <style lang="scss">
