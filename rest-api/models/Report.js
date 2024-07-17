@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const restaurantsList = ['Pirin',
     'Goce Delchev',
@@ -15,7 +15,7 @@ const reportSchema = new mongoose.Schema(
             required: true,
             validate: {
                 validator: (v) => {
-                    return restaurantsList.includes(v);
+                    return restaurantsList.includes(v)
                 },
                 message: (v) => `${v.value} is not a valid restaurant!`
             }
@@ -50,8 +50,8 @@ const reportSchema = new mongoose.Schema(
         }
     },
     { timestamps: { createdAt: 'created_at' } }
-);
+)
 
-const Report = mongoose.model('Report', reportSchema);
+const Report = mongoose.model('Report', reportSchema)
 
-module.exports = Report;
+module.exports = Report

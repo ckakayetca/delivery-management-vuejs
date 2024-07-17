@@ -1,37 +1,34 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const jwt = require('jsonwebtoken')
+const User = require('../models/User')
 
 exports.auth = async (req, res, next) => {
 
-	const token = req.cookies['auth'];
+	const token = req.cookies['auth']
 
 	if (token) {
 		try {
-			const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-			console.log(decodedToken._id)
-			let user = await User.findById(decodedToken._id, { password: 0, __v: 0 });
+			const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
+			let user = await User.findById(decodedToken._id, { password: 0, __v: 0 })
 
-			req.user = user;
-			req.isAuth = true;
+			req.user = user
+			req.isAuth = true
 		} catch (error) {
-			res.clearCookie('auth');
-			req.isAuth = false;
-			res.status(401).send({ message: 'Invalid token! ' });
+			res.clearCookie('auth')
+			req.isAuth = false
+			res.status(401).send({ message: 'Invalid token! ' })
 		}
 	} else {
-		req.isAuth = false;
+		req.isAuth = false
 	}
 
-    next();
-};
+	next()
+}
 
 exports.isAuth = (req, res, next) => {
-	console.log('auth middleware')
 	if (!req.user) {
-		console.log('403')
-		res.status(403).send('Unauthorized!');
+		res.status(403).send('Unauthorized!')
 
 		return
 	}
-	next();
-};
+	next()
+}

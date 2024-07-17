@@ -1,47 +1,47 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const User = require('../models/User');
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+const User = require('../models/User')
 
 // register
 
-exports.register = (userData) => User.create(userData);
+exports.register = (userData) => User.create(userData)
 
 // login
 
 exports.login = async (userData) => {
-	let user = await User.findOne({ username: userData.username });
+	let user = await User.findOne({ username: userData.username })
 
 	if (!user) {
-		throw new Error('Incorrect credentials!');
+		throw new Error('Incorrect credentials!')
 	}
 
-	const isCorrectPass = await bcrypt.compare(userData.password, user.password);
+	const isCorrectPass = await bcrypt.compare(userData.password, user.password)
 
 	if (!isCorrectPass) {
-		throw new Error('Incorrect credentials!');
+		throw new Error('Incorrect credentials!')
 	}
 
 	const payload = {
 		username: user.username,
 		_id: user._id,
-	};
+	}
 
 	user = JSON.parse(JSON.stringify(user))
 	const { password, __v, ...userDetails } = user
-	const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' });
+	const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' })
 
-	return [token, userDetails];
-};
+	return [token, userDetails]
+}
 
 // get profile info
 
 exports.getInfo = async (id) => {
-	let user = await User.findOne({ _id: id }, { password: 0, __v: 0 }).populate('reports');
+	let user = await User.findOne({ _id: id }, { password: 0, __v: 0 }).populate('reports')
 	if (!user) {
-		throw new Error('No such user!');
+		throw new Error('No such user!')
 	}
-	return user;
-};
+	return user
+}
 
 // edit profile info
 

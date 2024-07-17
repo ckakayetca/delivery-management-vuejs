@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const saltRounds = 5;
+const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
+const saltRounds = 5
 
 const roles = ['driver', 'admin']
 
@@ -45,11 +45,11 @@ const userSchema = new mongoose.Schema(
 )
 
 userSchema.pre('save', async function (next) {
-    const hash = await bcrypt.hash(this.password, saltRounds);
+    const hash = await bcrypt.hash(this.password, saltRounds)
 
-    this.password = hash;
+    this.password = hash
 })
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema)
 
-module.exports = User;
+module.exports = User
