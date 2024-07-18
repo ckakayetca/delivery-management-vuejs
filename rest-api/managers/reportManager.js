@@ -1,8 +1,6 @@
 const Report = require('../models/Report')
 const User = require('../models/User')
 
-
-
 // create report
 
 exports.create = (data, ownerId) =>
@@ -16,9 +14,7 @@ exports.create = (data, ownerId) =>
 // get all reports
 
 exports.getAll = async (type) => {
-    let reports = await Report.find()
-        .populate('postedBy', { password: 0, __v: 0 })
-        .lean()
+    let reports = await Report.find().populate('postedBy', { password: 0, __v: 0 }).lean()
 
     if (type) {
         reports = reports.filter((r) => r.type == type)
@@ -29,15 +25,11 @@ exports.getAll = async (type) => {
 
 // get one report
 
-exports.getOne = async (id) =>
-    await Report.findById(id)
-        .populate('postedBy', { password: 0, __v: 0 })
-        .lean()
+exports.getOne = async (id) => await Report.findById(id).populate('postedBy', { password: 0, __v: 0 }).lean()
 
 // get someone's reports
 
-exports.getMyReports = async (id) =>
-    await Report.find({ postedBy: { _id: id } })
+exports.getMyReports = async (id) => await Report.find({ postedBy: { _id: id } })
 
 // edit report
 

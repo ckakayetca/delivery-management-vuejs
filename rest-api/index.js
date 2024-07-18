@@ -7,7 +7,6 @@ const router = require('./routes')
 const app = express()
 const PORT = process.env.API_PORT
 
-
 expressCfg(app)
 mongooseCfg()
 

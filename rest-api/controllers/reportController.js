@@ -75,7 +75,7 @@ router.post('/create', isAuth, async (req, res) => {
         let id = req.user._id
         const post = await manager.create(data, id)
 
-        res.status(200).json(post)
+        res.status(201).json(post)
     } catch (error) {
         console.log(error.message)
     }

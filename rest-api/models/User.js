@@ -4,45 +4,43 @@ const saltRounds = 5
 
 const roles = ['driver', 'admin']
 
-const userSchema = new mongoose.Schema(
-    {
-        username: {
-            type: String,
-            required: true,
-            unique: true,
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    name: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: [5, 'Password should be at least 5 characters!'],
+    },
+    role: {
+        type: String,
+        required: true,
+        validate: {
+            validator: function (v) {
+                return roles.includes(v)
+            },
+            message: (v) => `Invalid role!`,
         },
-        name: {
-            type: String,
-            required: true,
-            unique: true,
+    },
+    tel: {
+        type: String,
+        required: true,
+    },
+    reports: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'Report',
         },
-        password: {
-            type: String,
-            required: true,
-            minlength: [5, 'Password should be at least 5 characters!']
-        },
-        role: {
-            type: String,
-            required: true,
-            validate: {
-                validator: function (v) {
-                    return roles.includes(v)
-                },
-                message: (v) => `Invalid role!`
-            }
-        },
-        tel: {
-            type: String,
-            required: true,
-        },
-        reports: [
-            {
-                type: mongoose.Types.ObjectId,
-                ref: 'Report',
-            }
-        ]
-    }
-)
+    ],
+})
 
 userSchema.pre('save', async function (next) {
     const hash = await bcrypt.hash(this.password, saltRounds)

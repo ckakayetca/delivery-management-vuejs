@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
 
-const restaurantsList = ['Pirin',
-    'Goce Delchev',
-    'Lozenets']
+const restaurantsList = ['Pirin', 'Goce Delchev', 'Lozenets']
 
 const reportSchema = new mongoose.Schema(
     {
@@ -17,8 +15,8 @@ const reportSchema = new mongoose.Schema(
                 validator: (v) => {
                     return restaurantsList.includes(v)
                 },
-                message: (v) => `${v.value} is not a valid restaurant!`
-            }
+                message: (v) => `${v.value} is not a valid restaurant!`,
+            },
         },
         amountR: {
             type: Number,
@@ -46,10 +44,10 @@ const reportSchema = new mongoose.Schema(
         },
         postedBy: {
             type: mongoose.Types.ObjectId,
-            ref: 'User'
-        }
+            ref: 'User',
+        },
     },
-    { timestamps: { createdAt: 'created_at' } }
+    { timestamps: { createdAt: 'created_at' } },
 )
 
 const Report = mongoose.model('Report', reportSchema)

@@ -4,10 +4,12 @@ const cors = require('cors')
 const { auth } = require('../middlewares/auth')
 
 function expressCfg(app) {
-    app.use(cors({
-        origin: true,
-        credentials: true,
-    }))
+    app.use(
+        cors({
+            origin: true,
+            credentials: true,
+        }),
+    )
     app.use(express.json())
     app.use(express.urlencoded({ extended: false }))
     app.use(cookieParser())
