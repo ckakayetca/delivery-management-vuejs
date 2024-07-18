@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const manager = require('../managers/carManager')
-const { isAuth } = require('../middlewares/auth')
+const { isAuth, isAdmin } = require('../middlewares/auth')
 
 // get all cars
 router.get('/', isAuth, async (req, res) => {
@@ -15,7 +15,7 @@ router.get('/', isAuth, async (req, res) => {
 
 // create car
 
-router.post('/', isAuth, isAdmin, async (req, res) => {
+router.post('/', isAdmin, async (req, res) => {
     try {
         const data = req.body
 
@@ -32,7 +32,7 @@ router.post('/', isAuth, isAdmin, async (req, res) => {
 })
 
 // edit car
-router.patch('/:id', isAuth, isAdmin, async (req, res) => {
+router.patch('/:id', isAdmin, async (req, res) => {
     const id = req.params.id
     const data = req.body
 
@@ -45,3 +45,5 @@ router.patch('/:id', isAuth, isAdmin, async (req, res) => {
         res.json({ message: error.message })
     }
 })
+
+module.exports = router
