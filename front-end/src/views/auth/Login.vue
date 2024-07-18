@@ -18,8 +18,7 @@
         </div>
 
         <div class="form-footer">
-            <button class="primary" @click.prevent="onSubmit">Вход</button>
-            <button class="secondary" @click.prevent="onSubmit">Вход</button>
+            <button class="button primary" @click.prevent="onSubmit">Вход</button>
         </div>
     </form>
 </template>

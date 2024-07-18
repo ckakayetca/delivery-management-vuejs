@@ -1,7 +1,5 @@
 <template>
-    <footer class="core-footer">
-        <h1 class="firma">EG Solutions LTD</h1>
-    </footer>
+    <footer class="core-footer" />
 </template>
 
 <script setup></script>

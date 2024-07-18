@@ -1,16 +1,19 @@
-button {
+.button {
     width: 100%;
     padding: 10px 30px;
     cursor: pointer;
-    border: 1px solid;
-    border-radius: 6px;
-    border-color: $light-blue-400;
-    background-color: $light-blue-700;
+    border: 2px solid;
     font-size: 14px;
+
+    &.primary {
+        background-color: $two;
+        border-color: $two;
+        color: $white;
+    }
 
     &.secondary {
         background-color: transparent;
-        border-color: $blue-900;
+        border-color: $two;
     }
 
     &.no-border {
