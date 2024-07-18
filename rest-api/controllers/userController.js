@@ -71,7 +71,7 @@ router.get('/profile', async (req, res) => {
 
 // edit profile info
 
-router.put('/profile', isAuth, async (req, res) => {
+router.patch('/profile', isAuth, async (req, res) => {
     const id = req.user._id
     const { username, password, role } = req.body
 

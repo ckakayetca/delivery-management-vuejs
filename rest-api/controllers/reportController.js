@@ -5,7 +5,7 @@ const { isAuth } = require('../middlewares/auth')
 // get all reports
 router.get('/', async (req, res) => {
     try {
-        let reports = await manager.getAll()
+        let reports = await manager.getAll(req.query?.type)
 
         res.status(200).json(reports)
     } catch (error) {
@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
 })
 
 // edit report
-router.put('/:id', isAuth, async (req, res) => {
+router.patch('/:id', isAuth, async (req, res) => {
     const reportId = req.params.id
     const data = req.body
 
@@ -69,7 +69,7 @@ router.delete('/:id', isAuth, async (req, res) => {
 })
 
 // create report
-router.post('/create', isAuth, async (req, res) => {
+router.post('/', isAuth, async (req, res) => {
     const data = req.body
     try {
         let id = req.user._id

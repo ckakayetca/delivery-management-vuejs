@@ -1,7 +1,5 @@
 const mongoose = require('mongoose')
 
-const restaurantsList = ['Pirin', 'Goce Delchev', 'Lozenets']
-
 const reportSchema = new mongoose.Schema(
     {
         date: {
@@ -9,14 +7,9 @@ const reportSchema = new mongoose.Schema(
             required: true,
         },
         restaurant: {
-            type: String,
+            type: mongoose.Types.ObjectId,
+            ref: 'Restaurant',
             required: true,
-            validate: {
-                validator: (v) => {
-                    return restaurantsList.includes(v)
-                },
-                message: (v) => `${v.value} is not a valid restaurant!`,
-            },
         },
         amountR: {
             type: Number,
@@ -35,7 +28,8 @@ const reportSchema = new mongoose.Schema(
             required: true,
         },
         car: {
-            type: String,
+            type: mongoose.Types.ObjectId,
+            ref: 'Car',
             required: true,
         },
         fuel: {
