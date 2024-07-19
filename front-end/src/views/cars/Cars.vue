@@ -8,7 +8,7 @@
         </button>
     </div>
 
-    // TODO: next -> implement modal component
+    <!-- TODO: next -> implement modal component -->
 </template>
 
 <script setup></script>
