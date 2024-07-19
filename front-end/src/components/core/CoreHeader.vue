@@ -14,8 +14,8 @@
             <ul class="desktop">
                 <template v-if="authStore.isLoggedIn">
                     <li v-if="authStore.isAdmin">
-                        <router-link :to="{ name: 'ReportsList' }">
-                            <button class="button secondary no-border">Отчети</button>
+                        <router-link :to="{ name: 'AdminPanel' }">
+                            <button class="button secondary no-border">Администраторски панел</button>
                         </router-link>
                     </li>
                     <li>
@@ -45,9 +45,14 @@
                 <div v-if="showMenu" ref="mobileMenu" class="mobile-menu" @click="toggleMenu">
                     <div class="links">
                         <template v-if="authStore.isLoggedIn">
-                            <router-link :to="{ name: 'ReportsList' }">Отчети</router-link>
+                            <router-link v-if="authStore.isAdmin" :to="{ name: 'AdminPanel' }">
+                                Администраторски панел
+                            </router-link>
+
                             <router-link :to="{ name: 'NewReport' }">Нов отчет</router-link>
+
                             <router-link :to="{ name: 'MyReports' }">Моите отчети</router-link>
+
                             <a href="#" @click="onLogout">Изход</a>
                         </template>
                     </div>

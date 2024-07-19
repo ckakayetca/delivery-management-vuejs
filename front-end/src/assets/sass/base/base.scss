@@ -40,3 +40,42 @@
 ul {
     list-style: none;
 }
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+    gap: 30px;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.dual-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.triple-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.quadruple-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.text-lg {
+    font-size: 20px;
+}

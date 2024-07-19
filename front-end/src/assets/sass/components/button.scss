@@ -4,6 +4,9 @@
     cursor: pointer;
     border: 2px solid;
     font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
     &.primary {
         background-color: $two;
