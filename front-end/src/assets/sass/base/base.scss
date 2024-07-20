@@ -33,6 +33,7 @@
     width: 100%;
     padding: 30px;
     height: auto;
+    flex: 1 0 auto;
     display: flex;
     place-content: stretch center;
 }
@@ -41,6 +42,16 @@ ul {
     list-style: none;
 }
 
+// iOS datepicker fix
+input[type="date"]
+{
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    height: 3em;
+}
+
+
+// Utility classes
 .flex {
     display: flex;
 }
@@ -74,6 +85,10 @@ ul {
 
 .w-full {
     width: 100%;
+}
+
+.w-auto {
+    width: auto;
 }
 
 .text-lg {

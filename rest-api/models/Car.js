@@ -27,7 +27,7 @@ const carSchema = new mongoose.Schema(
             required: true,
         },
         nextOilChange: {
-            type: Date,
+            type: Number,
             required: true,
         },
     },

@@ -4,6 +4,7 @@
 
         <input
             :id="name"
+            :class="type === 'date' ? 'datepicker' : null"
             :type="type"
             :required="required"
             :name="name"

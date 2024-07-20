@@ -36,9 +36,11 @@ form {
         label {
             font-size: 14px;
             font-weight: 500;
+            width: fit-content;
         }
 
-        input {
+        input,
+        .datepicker {
             padding: 10px;
             font-size: 14px;
             color: $black;
@@ -49,6 +51,10 @@ form {
             &:focus {
                 outline: none;
             }
+        }
+
+        .datepicker {
+            width: 100%;
         }
     }
 }

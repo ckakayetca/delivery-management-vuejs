@@ -92,9 +92,10 @@
     }
 
     function onClick(event) {
+        console.log('onClick')
         if (mobileMenu.value && !mobileMenu.value.contains(event.target)) {
             showMenu.value = false
-            document.removeEventListener('click', onClick)
+            document.removeEventListener('click', onClick, true)
         }
     }
 </script>

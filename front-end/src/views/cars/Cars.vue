@@ -2,13 +2,22 @@
     <div class="cars">
         <h1>Коли</h1>
 
-        <button class="button secondary" @click="onAddCar">
+        <button class="button secondary" @click="openModal">
             <i class="icon-plus" />
             Добави кола
         </button>
     </div>
 
-    <!-- TODO: next -> implement modal component -->
+    <CreateCar v-model="showModal" />
 </template>
 
-<script setup></script>
+<script setup>
+    import { ref } from 'vue'
+    import CreateCar from '../../modals/car/CreateCar.vue'
+
+    const showModal = ref(false)
+
+    function openModal() {
+        showModal.value = true
+    }
+</script>
