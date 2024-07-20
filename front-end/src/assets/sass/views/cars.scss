@@ -3,4 +3,42 @@
     flex-direction: column;
     gap: 30px;
     text-align: center;
+    max-width: 600px;
+}
+
+.car {
+    min-height: 150px;
+    background-color: $two;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+    .car-content {
+        display: flex;
+        gap: 5px;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .car-footer {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+
+        .button {
+            font-size: 20px;
+            width: auto;
+            padding: 0;
+
+            .icon-write {
+                color: $blue-700;
+            }
+
+            .icon-trash {
+                color: $red-900;
+            }
+        }
+    }
 }

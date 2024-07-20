@@ -5,17 +5,17 @@ import CarService from '@/services/CarService'
  * Action to fetch the cars list
  * @returns {Object} - The response
  */
-export default async function fetchCarsList(data) {
+export default async function fetchCarsList() {
     this.list.state = 'loading'
 
     try {
-        const response = await CarService.createCar(data)
+        const response = await CarService.fetchCarsList()
 
         if (response.status === 200) {
+            console.log('Fetched cars list:', response.data)
+
             this.list.data = response.data
             this.list.state = 'loaded'
-
-            toast.success('Успешно създаване на автомобил!')
 
             return {
                 status: response.status,
@@ -24,8 +24,6 @@ export default async function fetchCarsList(data) {
         } else {
             this.list.state = 'error'
 
-            toast.error('Неуспешно създаване на автомобил!')
-
             return {
                 status: response.status,
                 data: response.data,
@@ -33,8 +31,6 @@ export default async function fetchCarsList(data) {
         }
     } catch (error) {
         this.list.state = 'error'
-
-        toast.error(error.message)
 
         return {
             status: error.status,

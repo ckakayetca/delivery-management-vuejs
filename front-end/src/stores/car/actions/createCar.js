@@ -1,6 +1,8 @@
 import { useToast } from 'vue-toastification'
 import CarService from '@/services/CarService'
 
+import { useCarStore } from '@/stores/car'
+
 /**
  * Create Car
  * Action to create a car
@@ -9,6 +11,7 @@ import CarService from '@/services/CarService'
  */
 export default async function createCar(data) {
     const toast = useToast()
+    const store = useCarStore()
 
     try {
         const response = await CarService.createCar(data)
@@ -16,7 +19,7 @@ export default async function createCar(data) {
         if (response.status === 201) {
             toast.success('Успешно създаване на автомобил!')
 
-            this.list.data.push(response.data)
+            store.list.data.push(response.data.data)
 
             return {
                 status: response.status,

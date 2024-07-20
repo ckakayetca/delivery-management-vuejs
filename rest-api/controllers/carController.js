@@ -21,7 +21,7 @@ router.post('/', isAdmin, async (req, res) => {
 
         const car = await manager.create(data)
 
-        res.status(200).json({
+        res.status(201).json({
             message: 'Car created!',
             data: car,
         })

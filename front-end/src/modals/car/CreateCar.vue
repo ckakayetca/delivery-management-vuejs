@@ -10,7 +10,7 @@
 
                 <FormInput v-model="model" name="model" label="Модел" :error="errors.model" required />
 
-                <FormInput v-model="color" name="color" label="Марка" :error="errors.color" required />
+                <FormInput v-model="color" name="color" label="Цвят" :error="errors.color" required />
 
                 <FormInput
                     v-model="registration"
@@ -105,6 +105,10 @@
             }
 
             const response = await carStore.createCar(formData)
+
+            if (response.status === 201) {
+                showModal.value = false
+            }
         } catch (error) {
             console.log(error)
         }
