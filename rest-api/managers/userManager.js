@@ -33,8 +33,14 @@ exports.login = async (userData) => {
     return [token, userDetails]
 }
 
-// get profile info
+// get users list
+exports.getUsers = async () => {
+    let users = await User.find().populate('reports').lean()
 
+    return users
+}
+
+// get profile info
 exports.getInfo = async (id) => {
     let user = await User.findOne({ _id: id }, { password: 0, __v: 0 }).populate('reports')
     if (!user) {
@@ -54,8 +60,8 @@ exports.verifyToken = (token) => {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
-        return 'valid'
+        return true
     } catch (error) {
-        return 'invalid'
+        return false
     }
 }

@@ -7,10 +7,11 @@ const { register, login, getInfo, editInfo, verifyToken } = require('../managers
 router.get('/', async (req, res) => {
     const token = req.cookies['auth']
     if (!token) {
-        res.status(200).send({ message: 'No token!' })
+        res.status(401).send({ message: 'No token!' })
     } else {
-        let verify = verifyToken(token)
-        res.status(200).json(verify)
+        let isValid = verifyToken(token)
+        
+        res.status(isValid ? 200 : 401)
     }
 })
 
@@ -65,7 +66,7 @@ router.get('/profile', async (req, res) => {
         let user = await getInfo(id)
         res.status(200).json(user)
     } catch (error) {
-        res.send(undefined)
+        res.status(401).json({ message: error.message })
     }
 })
 

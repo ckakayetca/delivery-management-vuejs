@@ -53,6 +53,7 @@ export const useAuthStore = defineStore('auth', {
                 if (response.status == 200) {
                     const user = response.data
                     this.setUser(user)
+                    localStorage.setItem('delivery-management', true)
 
                     return response.status
                 }

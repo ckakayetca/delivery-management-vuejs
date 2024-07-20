@@ -1,6 +1,8 @@
 import axios from 'axios'
-// config
 
+axios.defaults.withCredentials = true
+
+// config
 axios.interceptors.request.use(
     function (config) {
         config.withCredentials = true

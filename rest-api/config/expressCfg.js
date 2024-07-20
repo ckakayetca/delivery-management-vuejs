@@ -6,7 +6,7 @@ const { auth } = require('../middlewares/auth')
 function expressCfg(app) {
     app.use(
         cors({
-            origin: true,
+            origin: process.env.FRONTEND_URL,
             credentials: true,
         }),
     )
