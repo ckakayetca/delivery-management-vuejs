@@ -42,7 +42,7 @@ router.patch('/:id', isAdmin, async (req, res) => {
         res.status(200).json(car)
     } catch (error) {
         console.log(error)
-        res.json({ message: error.message })
+        res.status(422).json({ message: error.message })
     }
 })
 

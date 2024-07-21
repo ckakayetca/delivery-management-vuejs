@@ -29,8 +29,8 @@ class CarService {
      * @param {Object} data - The car data
      * @returns {Promise} - The promise object of the API call
      */
-    editCar(id, data) {
-        return axios.put(`cars/${id}`, data)
+    updateCar(id, data) {
+        return axios.patch(`cars/${id}`, data)
     }
 
     /**

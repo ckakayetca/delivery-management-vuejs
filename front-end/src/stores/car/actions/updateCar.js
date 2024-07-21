@@ -14,10 +14,11 @@ export default async function updateCar(id, data) {
     try {
         const response = await CarService.updateCar(id, data)
 
-        if (response.status === 201) {
-            const carIndex = this.list.data.findIndex((car) => car.id === id)
+        if (response.status === 200) {
+            const carIndex = this.list.data.findIndex((car) => car._id === id)
 
             if (carIndex) {
+                console.log(carIndex)
                 this.list.data[carIndex] = response.data
             }
 

@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-    import { ref, watch } from 'vue'
+    import { onMounted, ref, watch } from 'vue'
 
     const props = defineProps({
         /**
@@ -41,12 +41,7 @@
         }
     }
 
-    watch(
-        () => props.modelValue,
-        () => {
-            if (props.modelValue) {
-                document.addEventListener('click', onOutsideClick, true)
-            }
-        },
-    )
+    onMounted(() => {
+        document.addEventListener('click', onOutsideClick, true)
+    })
 </script>

@@ -24,7 +24,7 @@
 
     const props = defineProps({
         modelValue: {
-            type: String,
+            type: [String, Number],
             default: null,
         },
         label: {

@@ -2,7 +2,7 @@
     <Modal v-model="showModal">
         <form action="" @submit.prevent="onSubmit">
             <div class="form-header">
-                <h1>Добавяне на автомобил</h1>
+                <h1>Редактиране на автомобил</h1>
             </div>
 
             <div class="form-content">
@@ -50,7 +50,7 @@
 
             <div class="form-footer">
                 <button class="button primary" :disabled="!meta.valid || formLoading" @click.prevent="onSubmit">
-                    Добавяне
+                    Редактиране
                 </button>
             </div>
         </form>
@@ -58,7 +58,7 @@
 </template>
 
 <script setup>
-    import { ref, watch } from 'vue'
+    import { onBeforeMount, onBeforeUnmount, onMounted, ref, watch } from 'vue'
     import { useForm, useField } from 'vee-validate'
 
     import Modal from '@/components/shared/Modal.vue'
@@ -66,9 +66,15 @@
 
     import { useCarStore } from '@/stores/car'
 
+    import { readableDate } from '@/utils/utils'
+
     const props = defineProps({
         modelValue: {
             type: Boolean,
+            required: true,
+        },
+        carDetails: {
+            type: Object,
             required: true,
         },
     })
@@ -104,14 +110,14 @@
                 model: model.value,
                 color: color.value,
                 registration: registration.value,
-                insuranceDueDate: insuranceDueDate.value,
-                motDate: motDate.value,
+                insuranceDueDate: new Date(insuranceDueDate.value),
+                motDate: new Date(motDate.value),
                 nextOilChange: nextOilChange.value,
             }
 
-            const response = await carStore.createCar(formData)
+            const response = await carStore.updateCar(props.carDetails._id, formData)
 
-            if (response.status === 201) {
+            if (response.status === 200) {
                 showModal.value = false
             }
         } catch (error) {
@@ -135,4 +141,14 @@
             showModal.value = newValue
         },
     )
+
+    onMounted(() => {
+        setFieldValue('make', props.carDetails.make)
+        setFieldValue('model', props.carDetails.model)
+        setFieldValue('color', props.carDetails.color)
+        setFieldValue('registration', props.carDetails.registration)
+        setFieldValue('insuranceDueDate', readableDate(props.carDetails.insuranceDueDate))
+        setFieldValue('motDate', readableDate(props.carDetails.motDate))
+        setFieldValue('nextOilChange', props.carDetails.nextOilChange)
+    })
 </script>

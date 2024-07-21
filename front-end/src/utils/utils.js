@@ -13,6 +13,10 @@ export function dateFromNow(date) {
     return moment(date).fromNow()
 }
 
+export function readableDate(date) {
+    return moment(date).format('YYYY-DD-MM')
+}
+
 export function fullDate(date) {
     return moment(date).locale('bg-BG').format('DD/MM/YYYY')
 }
