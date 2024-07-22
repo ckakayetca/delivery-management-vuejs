@@ -19,13 +19,8 @@ export default async function deleteCar(id) {
         if (response.status === 200) {
             toast.success('Успешно изтриване на автомобил!')
 
-            const carIndex = store.list.data.findIndex((car) => car._id === id)
-
-            console.log('carIndex', carIndex)
-
-            if (carIndex >= 0) {
-                store.list.data.splice(carIndex, 1)
-            }
+            // remove the deleted car from the list
+            store.list.data = store.list.data.filter((car) => car._id !== id)
 
             return {
                 status: response.status,

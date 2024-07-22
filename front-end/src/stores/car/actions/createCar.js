@@ -19,7 +19,7 @@ export default async function createCar(data) {
         if (response.status === 201) {
             toast.success('Успешно създаване на автомобил!')
 
-            store.list.data.push(response.data.data)
+            store.list.data.unshift(response.data.data)
 
             return {
                 status: response.status,

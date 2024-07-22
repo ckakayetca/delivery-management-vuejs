@@ -17,8 +17,7 @@ export default async function updateCar(id, data) {
         if (response.status === 200) {
             const carIndex = this.list.data.findIndex((car) => car._id === id)
 
-            if (carIndex) {
-                console.log(carIndex)
+            if (carIndex >= 0) {
                 this.list.data[carIndex] = response.data
             }
 
