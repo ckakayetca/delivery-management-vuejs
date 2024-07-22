@@ -21,7 +21,7 @@ router.post('/', isAdmin, async (req, res) => {
 
         const restaurant = await manager.create(data)
 
-        res.status(200).json({
+        res.status(201).json({
             message: 'Restaurant created!',
             data: restaurant,
         })
@@ -43,6 +43,20 @@ router.patch('/:id', isAdmin, async (req, res) => {
     } catch (error) {
         console.log(error)
         res.json({ message: error.message })
+    }
+})
+
+// delete restaurant
+router.delete('/:id', isAdmin, async (req, res) => {
+    const id = req.params.id
+
+    try {
+        await manager.del(id)
+
+        res.status(200).json({ message: 'Restaurant deleted!' })
+    } catch (error) {
+        console.log(error)
+        res.status(422).json({ message: error.message })
     }
 })
 

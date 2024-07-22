@@ -5,7 +5,7 @@ exports.create = async (data) => await Restaurant.create(data)
 
 // get all restaurants
 exports.getAll = async (select) => {
-    let restaurants = await Restaurant.find().lean()
+    let restaurants = await Restaurant.find().sort({ created_at: -1 }).lean()
 
     if (select) {
         restaurants = restaurants.map((r) => {

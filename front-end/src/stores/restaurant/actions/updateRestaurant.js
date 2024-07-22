@@ -1,6 +1,8 @@
 import { useToast } from 'vue-toastification'
 import RestaurantService from '@/services/RestaurantService'
 
+import { useRestaurantStore } from '@/stores/restaurant'
+
 /**
  * Update Restaurant
  * Action to update a restaurant
@@ -10,15 +12,16 @@ import RestaurantService from '@/services/RestaurantService'
  */
 export default async function updateRestaurant(id, data) {
     const toast = useToast()
+    const store = useRestaurantStore()
 
     try {
         const response = await RestaurantService.updateRestaurant(id, data)
 
         if (response.status === 201) {
-            const restaurantIndex = this.list.data.findIndex((restaurant) => restaurant.id === id)
+            const restaurantIndex = store.list.data.findIndex((restaurant) => restaurant.id === id)
 
             if (restaurantIndex) {
-                this.list.data[restaurantIndex] = response.data
+                store.list.data[restaurantIndex] = response.data
             }
 
             toast.success('Успешно редактиране на ресторант!')

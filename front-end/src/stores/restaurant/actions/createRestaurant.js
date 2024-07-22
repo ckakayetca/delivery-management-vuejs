@@ -1,6 +1,8 @@
 import { useToast } from 'vue-toastification'
 import RestaurantService from '@/services/RestaurantService'
 
+import { useRestaurantStore } from '@/stores/restaurant'
+
 /**
  * Create Restaurant
  * Action to create a restaurant
@@ -9,6 +11,7 @@ import RestaurantService from '@/services/RestaurantService'
  */
 export default async function createRestaurant(data) {
     const toast = useToast()
+    const store = useRestaurantStore()
 
     try {
         const response = await RestaurantService.createRestaurant(data)
@@ -16,26 +19,27 @@ export default async function createRestaurant(data) {
         if (response.status === 201) {
             toast.success('Успешно създаване на ресторант!')
 
-            this.list.data.push(response.data)
+            store.list.data.unshift(response.data.data)
 
             return {
                 status: response.status,
-                data: response.data,
+                data: response.data.data,
             }
         } else {
-            toast.error('Неуспешно създаване на ресторант!')
+            console.toast.error('Неуспешно създаване на ресторант!')
 
             return {
                 status: response.status,
-                data: response.data,
+                data: response.data.data,
             }
         }
     } catch (error) {
+        console.log(error)
         toast.error(error.message)
 
         return {
             status: error.status,
-            data: error.data,
+            data: error.data.data,
         }
     }
 }

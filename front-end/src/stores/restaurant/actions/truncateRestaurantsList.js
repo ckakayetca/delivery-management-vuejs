@@ -1,7 +1,11 @@
+import { useRestaurantStore } from '@/stores/restaurant'
+
 /**
  * Action to truncate the restaurants list
  */
 export default async function truncateRestaurantsList() {
-    this.list.data = []
-    this.list.state = 'loading'
+    const store = useRestaurantStore()
+
+    store.list.data = []
+    store.list.state = 'loading'
 }

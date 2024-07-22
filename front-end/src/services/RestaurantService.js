@@ -24,12 +24,12 @@ class RestaurantService {
     }
 
     /**
-     * Edit Restaurant
+     * Update Restaurant
      * @param {Number} id - The restaurant id
      * @param {Object} data - The restaurant data
      * @returns {Promise} - The promise object of the API call
      */
-    editRestaurant(id, data) {
+    updateRestaurant(id, data) {
         return axios.put(`restaurants/${id}`, data)
     }
 

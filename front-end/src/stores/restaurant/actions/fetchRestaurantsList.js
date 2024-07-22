@@ -1,30 +1,34 @@
 import RestaurantService from '@/services/RestaurantService'
 
+import { useRestaurantStore } from '@/stores/restaurant'
+import { useToast } from 'vue-toastification'
+
 /**
  * Fetch Restaurants list
  * Action to fetch the restaurants list
  * @returns {Object} - The response
  */
-export default async function fetchRestaurantsList(data) {
-    this.list.state = 'loading'
+export default async function fetchRestaurantsList() {
+    const store = useRestaurantStore()
+    const toast = useToast()
+
+    store.list.state = 'loading'
 
     try {
-        const response = await RestaurantService.createRestaurant(data)
+        const response = await RestaurantService.fetchRestaurantsList()
 
         if (response.status === 200) {
-            this.list.data = response.data
-            this.list.state = 'loaded'
-
-            toast.success('Успешно създаване на ресторант!')
+            console.log('Fetched restaurants list: ', response.data)
+            store.list.data = response.data
+            store.list.state = 'loaded'
 
             return {
                 status: response.status,
                 data: response.data,
             }
         } else {
-            this.list.state = 'error'
-
-            toast.error('Неуспешно създаване на ресторант!')
+            store.list.state = 'error'
+            toast.error(response.message)
 
             return {
                 status: response.status,
@@ -32,7 +36,7 @@ export default async function fetchRestaurantsList(data) {
             }
         }
     } catch (error) {
-        this.list.state = 'error'
+        store.list.state = 'error'
 
         toast.error(error.message)
 
