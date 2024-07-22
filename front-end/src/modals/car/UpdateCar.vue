@@ -150,5 +150,7 @@
         setFieldValue('insuranceDueDate', readableDate(props.carDetails.insuranceDueDate))
         setFieldValue('motDate', readableDate(props.carDetails.motDate))
         setFieldValue('nextOilChange', props.carDetails.nextOilChange)
+
+        console.log(readableDate(props.carDetails.insuranceDueDate))
     })
 </script>

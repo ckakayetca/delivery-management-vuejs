@@ -33,6 +33,7 @@
 
     <CreateCar v-if="modals.create" v-model="modals.create" />
     <UpdateCar v-if="modals.update" v-model="modals.update" :car-details="carDetails" />
+    <DeleteCar v-if="modals.delete" v-model="modals.delete" :car-details="carDetails" />
 </template>
 
 <script setup>

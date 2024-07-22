@@ -1,6 +1,8 @@
 import { useToast } from 'vue-toastification'
 import CarService from '@/services/CarService'
 
+import { useCarStore } from '@/stores/car'
+
 /**
  * Delete Car
  * Action to delete a car
@@ -9,12 +11,21 @@ import CarService from '@/services/CarService'
  */
 export default async function deleteCar(id) {
     const toast = useToast()
+    const store = useCarStore()
 
     try {
         const response = await CarService.deleteCar(id)
 
         if (response.status === 200) {
             toast.success('Успешно изтриване на автомобил!')
+
+            const carIndex = store.list.data.findIndex((car) => car._id === id)
+
+            console.log('carIndex', carIndex)
+
+            if (carIndex >= 0) {
+                store.list.data.splice(carIndex, 1)
+            }
 
             return {
                 status: response.status,

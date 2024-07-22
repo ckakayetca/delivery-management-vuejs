@@ -5,7 +5,7 @@ exports.create = async (data) => await Car.create(data)
 
 // get all cars
 exports.getAll = async (select) => {
-    let cars = await Car.find().lean()
+    let cars = await Car.find().sort({ created_at: -1 }).lean()
 
     if (select) {
         cars = cars.map((r) => {

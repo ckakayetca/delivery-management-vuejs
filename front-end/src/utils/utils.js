@@ -14,7 +14,7 @@ export function dateFromNow(date) {
 }
 
 export function readableDate(date) {
-    return moment(date).format('YYYY-DD-MM')
+    return moment(date).format('YYYY-MM-DD')
 }
 
 export function fullDate(date) {

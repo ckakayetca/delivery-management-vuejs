@@ -46,4 +46,18 @@ router.patch('/:id', isAdmin, async (req, res) => {
     }
 })
 
+// delete car
+router.delete('/:id', isAdmin, async (req, res) => {
+    const id = req.params.id
+
+    try {
+        await manager.del(id)
+
+        res.status(200).json({ message: 'Car deleted!' })
+    } catch (error) {
+        console.log(error)
+        res.status(422).json({ message: error.message })
+    }
+})
+
 module.exports = router
