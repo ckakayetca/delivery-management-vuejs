@@ -1,1 +1,3 @@
-export default {}
+import getReportsList from './getReportsList'
+
+export default { getReportsList }

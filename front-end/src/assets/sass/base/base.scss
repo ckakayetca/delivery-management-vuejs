@@ -43,13 +43,14 @@ ul {
 }
 
 // iOS datepicker fix
-input[type="date"]
-{
-    -webkit-appearance: none;
-    -moz-appearance: textfield;
+input[type="date"] {
+    appearance: none;
     height: 3em;
 }
 
+select {
+    appearance: none;
+}
 
 // Utility classes
 .flex {
@@ -66,9 +67,10 @@ input[type="date"]
 }
 
 .dual-box {
+    max-width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    grid-template-columns: repeat(2, calc(50% - 30px));
+    gap: 60px;
 }
 
 .triple-box {

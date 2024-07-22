@@ -24,6 +24,14 @@ class ReportService {
     }
 
     /**
+     * Fetch Report Create Data
+     * @returns {Promise} - The promise object of the API call
+     */
+    fetchReportCreateData() {
+        return axios.get('reports/create')
+    }
+
+    /**
      * Create Report
      * @param {Object} data - The report data
      * @returns {Promise} - The promise object of the API call

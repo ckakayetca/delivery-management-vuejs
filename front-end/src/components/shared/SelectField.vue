@@ -7,7 +7,7 @@
             <option
                 v-for="option in options"
                 :key="option.value"
-                :selected="modelValue.value === option.value"
+                :selected="modelValue?.value === option.value"
                 :value="option.value"
             >
                 {{ option.label }}
@@ -27,7 +27,7 @@
 
     const props = defineProps({
         modelValue: {
-            type: [String, Object],
+            type: [String, Object, null],
             default: null,
         },
         label: {
@@ -72,6 +72,11 @@
     )
 
     onMounted(() => {
+        if (!props.modelValue) {
+            emit('update:modelValue', '')
+            return
+        }
+
         if (!props.modelValue.label || !props.modelValue.value) {
             emit('update:modelValue', findOptionByValue(props.modelValue))
         }

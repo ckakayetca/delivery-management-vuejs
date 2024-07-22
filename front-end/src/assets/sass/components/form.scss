@@ -40,8 +40,10 @@ form {
         }
 
         input,
+        select,
         .datepicker {
             padding: 10px;
+            min-height: 40px;
             font-size: 14px;
             color: $black;
             border: none;
