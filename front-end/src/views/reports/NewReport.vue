@@ -10,6 +10,9 @@
             </template>
 
             <template v-else-if="reportCreateDataState === 'loaded'">
+                <FormInput v-model="date" name="date" label="Дата" type="date" :error="errors.date" required />
+
+                <div class="separator" />
                 <SelectField
                     v-model="restaurant"
                     :error="errors.restaurant"
@@ -28,42 +31,53 @@
                     label="Кола"
                 />
 
+                <div class="separator" />
+                <h2>Ресторант</h2>
+
                 <div class="dual-box">
-                    <FormInput v-model="amountR" :error="errors.amountR" name="amountR" label="Сума Р" required />
+                    <FormInput
+                        v-model="amountR"
+                        :error="errors.amountR"
+                        name="amountR"
+                        label="Оборот"
+                        type="number"
+                        required
+                    />
                     <FormInput
                         v-model="deliveriesR"
                         :error="errors.deliveriesR"
                         name="deliveriesR"
-                        label="Доставки Р"
+                        type="number"
+                        label="Брой доставки"
                         required
                     />
                 </div>
+
+                <div class="separator" />
+                <h2>Takeaway/Glovo</h2>
 
                 <div class="dual-box">
                     <FormInput
                         v-model="amountTG"
                         :error="errors.amountTG"
                         name="amountTG"
-                        label="Сума Takeaway/Glovo"
+                        type="number"
+                        label="Общ оборот"
                         required
                     />
                     <FormInput
                         v-model="deliveriesTG"
                         :error="errors.deliveriesTG"
                         name="deliveriesTG"
-                        label="Доставки Takeaway/Glovo"
+                        label="Брой доставки"
+                        type="number"
                         required
                     />
                 </div>
 
-                <FormInput
-                    v-model="fuel"
-                    :error="errors.fuel"
-                    type="number"
-                    name="fuel"
-                    label="Гориво (сума)"
-                    required
-                />
+                <div class="separator" />
+
+                <FormInput v-model="fuel" :error="errors.fuel" type="number" name="fuel" label="Гориво" />
             </template>
 
             <template v-else>
@@ -83,62 +97,100 @@
 <script setup>
     import { ref, computed, watch, onBeforeMount } from 'vue'
     import { useForm, useField } from 'vee-validate'
+    import { useRouter } from 'vue-router'
 
     import SelectField from '@/components/shared/SelectField.vue'
     import FormInput from '@/components/shared/FormInput.vue'
 
     import { useReportStore } from '@/stores/report'
 
+    import { readableDate } from '@/utils/utils'
+
     const emit = defineEmits(['update:modelValue'])
+
+    const router = useRouter()
 
     const reportStore = useReportStore()
     const formLoading = ref(false)
 
-    const validationSchema = {}
+    const validationSchema = {
+        date: (value) => {
+            if (!value) {
+                return 'Полето е задължително'
+            }
+
+            return true
+        },
+        restaurant: (value) => {
+            if (!value) {
+                return 'Полето е задължително'
+            }
+
+            return true
+        },
+        amountR: (value) => {
+            if (!value) {
+                return 'Полето е задължително'
+            }
+
+            if (isNaN(Number(value))) {
+                return 'Моля, въведете валидно число'
+            }
+
+            return true
+        },
+        deliveriesR: (value) => {
+            if (!value) {
+                return 'Полето е задължително'
+            }
+
+            if (isNaN(Number(value)) || Math.floor(Number(value)) !== Number(value)) {
+                return 'Моля, въведете валидно число'
+            }
+
+            return true
+        },
+        amountTG: (value) => {
+            if (!value) {
+                return 'Полето е задължително'
+            }
+
+            if (isNaN(Number(value))) {
+                return 'Моля, въведете валидно число'
+            }
+
+            return true
+        },
+        deliveriesTG: (value) => {
+            if (!value) {
+                return 'Полето е задължително'
+            }
+
+            if (isNaN(Number(value)) || Math.floor(Number(value)) !== Number(value)) {
+                return 'Моля, въведете валидно число'
+            }
+
+            return true
+        },
+        car: (value) => {
+            if (!value) {
+                return 'Полето е задължително'
+            }
+
+            return true
+        },
+        fuel: (value) => {
+            if (value && isNaN(Number(value))) {
+                return 'Моля, въведете валидно число'
+            }
+
+            return true
+        },
+    }
 
     const { resetForm, setErrors, setFieldValue, errors, meta } = useForm({
         validationSchema,
     })
-
-    // fields of the form
-    // date: {
-    //     type: Date,
-    //     required: true,
-    // },
-    // restaurant: {
-    //     type: mongoose.Types.ObjectId,
-    //     ref: 'Restaurant',
-    //     required: true,
-    // },
-    // amountR: {
-    //     type: Number,
-    //     required: true,
-    // },
-    // deliveriesR: {
-    //     type: Number,
-    //     required: true,
-    // },
-    // amountTG: {
-    //     type: Number,
-    //     required: true,
-    // },
-    // deliveriesTG: {
-    //     type: Number,
-    //     required: true,
-    // },
-    // car: {
-    //     type: mongoose.Types.ObjectId,
-    //     ref: 'Car',
-    //     required: true,
-    // },
-    // fuel: {
-    //     type: Number,
-    //     required: true,
-    // },
-    // postedBy: {
-    //     type: mongoose.Types.ObjectId,
-    //     ref: 'User',
-    // },
 
     const { value: date } = useField('date')
     const { value: restaurant } = useField('restaurant')
@@ -159,15 +211,22 @@
 
         try {
             let formData = {
-                make: make.value,
-                model: model.value,
-                color: color.value,
+                date: date.value,
+                restaurant: restaurant.value.value,
+                amountR: amountR.value,
+                deliveriesR: deliveriesR.value,
+                amountTG: amountTG.value,
+                deliveriesTG: deliveriesTG.value,
+                car: car.value.value,
+                fuel: fuel.value ?? 0,
             }
+
+            console.log('Sending:', formData)
 
             const response = await reportStore.createReport(formData)
 
             if (response.status === 201) {
-                showModal.value = false
+                router.push({ name: 'MyReports' })
             }
         } catch (error) {
             console.log(error)
@@ -180,5 +239,6 @@
 
         setFieldValue('restaurant', reportCreateData.value.restaurants[0])
         setFieldValue('car', reportCreateData.value.cars[0])
+        setFieldValue('date', readableDate(new Date()))
     })
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div class="form-control">
-        <label :for="name">{{ label }} <span v-if="required">*</span></label>
+        <label :for="name">{{ label }} <span v-if="required">*</span><span v-else>(опционално)</span></label>
 
         <input
             :id="name"
