@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 })
 
 // get my reports
-router.get('/my-reports', isAuth, async (req, res) => {
+router.get('/my', isAuth, async (req, res) => {
     try {
         let id = req.user._id
 

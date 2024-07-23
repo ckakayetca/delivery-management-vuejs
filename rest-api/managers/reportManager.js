@@ -26,7 +26,7 @@ exports.getAll = async (type) => {
 exports.getOne = async (id) => await Report.findById(id).populate('postedBy', { password: 0, __v: 0 }).lean()
 
 // get someone's reports
-exports.getMyReports = async (id) => await Report.find({ postedBy: { _id: id } })
+exports.getMyReports = async (id) => await Report.find({ postedBy: { _id: id } }).lean()
 
 // edit report
 exports.edit = async (id, data) => await Report.findByIdAndUpdate(id, data)

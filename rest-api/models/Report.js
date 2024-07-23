@@ -36,6 +36,12 @@ const reportSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
+        totalAmount: {
+            type: Number,
+        },
+        totalDeliveries: {
+            type: Number,
+        },
         postedBy: {
             type: mongoose.Types.ObjectId,
             ref: 'User',
@@ -44,6 +50,16 @@ const reportSchema = new mongoose.Schema(
     { timestamps: { createdAt: 'created_at' } },
 )
 
+reportSchema.pre('save', function (next) {
+    this.amountR = this.amountR.toFixed(2)
+    this.amountTG = this.amountTG.toFixed(2)
+    this.fuel = this.fuel.toFixed(2)
+
+    this.totalAmount = this.amountR + this.amountTG
+    this.totalDeliveries = this.deliveriesR + this.deliveriesTG
+
+    next()
+})
 const Report = mongoose.model('Report', reportSchema)
 
 module.exports = Report
