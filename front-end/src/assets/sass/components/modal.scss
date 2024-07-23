@@ -8,10 +8,10 @@
     justify-content: center;
     align-items: center;
     padding: 50px 30px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgb(0 0 0 / 70%);
 
     .modal {
-        background-color: $one;
+        background-color: $zinc-900;
         padding: 20px;
         width: 100%;
         gap: 30px;
@@ -22,7 +22,7 @@
         overflow: scroll;
         margin: auto 0;
         justify-content: center;
-        
+
         .modal-close-btn {
             font-size: 24px;
             top: 20px;

@@ -15,10 +15,10 @@
                     <div>{{ restaurant.phoneNumber }}</div>
                 </div>
                 <div class="restaurant-footer">
-                    <button class="button secondary" @click="openModal('update', restaurant)">
+                    <button class="button secondary no-border" @click="openModal('update', restaurant)">
                         <i class="icon-write" />
                     </button>
-                    <button class="button secondary" @click="openModal('delete', restaurant)">
+                    <button class="button secondary no-border" @click="openModal('delete', restaurant)">
                         <i class="icon-trash" />
                     </button>
                 </div>

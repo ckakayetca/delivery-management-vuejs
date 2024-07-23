@@ -2,21 +2,39 @@
     width: 100%;
     padding: 10px 30px;
     cursor: pointer;
-    border: 2px solid;
-    font-size: 14px;
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    font-size: 20px;
+    gap: 10px;
+    text-decoration: none;
 
     &.primary {
-        background-color: $two;
-        border-color: $two;
-        color: $white;
+        background-color: $zinc-700;
+        border-color: $zinc-700;
+        color: $zinc-50;
     }
 
     &.secondary {
         background-color: transparent;
-        border-color: $two;
+        border-color: $zinc-700;
     }
 
     &.no-border {
         border: none;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        background-color: $zinc-400;
+        border-color: $zinc-400;
+        opacity: 0.3;
+        transition: all 0.3s;
+    }
+
+    a {
+        text-decoration: none;
     }
 }

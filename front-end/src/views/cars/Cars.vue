@@ -20,10 +20,10 @@
                     </template>
                 </div>
                 <div class="car-footer">
-                    <button class="button secondary" @click="openModal('update', car)">
+                    <button class="button secondary no-border" @click="openModal('update', car)">
                         <i class="icon-write" />
                     </button>
-                    <button class="button secondary" @click="openModal('delete', car)">
+                    <button class="button secondary no-border" @click="openModal('delete', car)">
                         <i class="icon-trash" />
                     </button>
                 </div>
