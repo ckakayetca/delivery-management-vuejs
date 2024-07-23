@@ -1,3 +1,17 @@
 table {
     max-width: 600px;
+    overflow: scroll;
+    font-size: 12px;
+
+    thead,
+    tbody {
+        tr {
+            border: 1px solid $zinc-700;
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid $zinc-700;
+        }
+    }
 }
