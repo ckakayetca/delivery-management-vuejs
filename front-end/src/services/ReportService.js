@@ -8,10 +8,11 @@ import axios from '@/config/axios'
 class ReportService {
     /**
      * Fetch Reports
+     * @param {Boolean} self - If the reports are the user's own reports
      * @returns {Promise} - The promise object of the API call
      */
-    fetchReportsList() {
-        return axios.get('reports')
+    fetchReportsList(self) {
+        return axios.get(`reports/${self ? 'my' : ''}`)
     }
 
     /**
