@@ -2,27 +2,37 @@
     <div class="restaurants">
         <h1>Ресторанти</h1>
 
-        <button class="button secondary" @click="openModal('create')">
-            <i class="icon-plus" />
-            Добави ресторант
-        </button>
+        <template v-if="restaurantStore.list.state === 'loading'">
+            <Loader />
+        </template>
 
-        <template v-for="restaurant in restaurantStore.list.data" :key="restaurant._id">
-            <div class="restaurant">
-                <div class="restaurant-header">{{ restaurant.name }}</div>
-                <div class="restaurant-content">
-                    <div>{{ restaurant.address }}</div>
-                    <div>{{ restaurant.phoneNumber }}</div>
+        <template v-if="restaurantStore.list.state === 'loaded'">
+            <button class="button secondary" @click="openModal('create')">
+                <i class="icon-plus" />
+                Добави ресторант
+            </button>
+
+            <template v-for="restaurant in restaurantStore.list.data" :key="restaurant._id">
+                <div class="restaurant">
+                    <div class="restaurant-header">{{ restaurant.name }}</div>
+                    <div class="restaurant-content">
+                        <div>{{ restaurant.address }}</div>
+                        <div>{{ restaurant.phoneNumber }}</div>
+                    </div>
+                    <div class="restaurant-footer">
+                        <button class="button secondary no-border" @click="openModal('update', restaurant)">
+                            <i class="icon-write" />
+                        </button>
+                        <button class="button secondary no-border" @click="openModal('delete', restaurant)">
+                            <i class="icon-trash" />
+                        </button>
+                    </div>
                 </div>
-                <div class="restaurant-footer">
-                    <button class="button secondary no-border" @click="openModal('update', restaurant)">
-                        <i class="icon-write" />
-                    </button>
-                    <button class="button secondary no-border" @click="openModal('delete', restaurant)">
-                        <i class="icon-trash" />
-                    </button>
-                </div>
-            </div>
+            </template>
+        </template>
+
+        <template v-else>
+            <div class="error">Възникна грешка при зареждането на ресторантите</div>
         </template>
     </div>
 
