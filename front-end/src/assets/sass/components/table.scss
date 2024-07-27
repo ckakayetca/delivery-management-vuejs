@@ -1,17 +1,83 @@
 table {
-    max-width: 600px;
-    overflow: scroll;
-    font-size: 12px;
+    border-collapse: collapse;
+    table-layout: fixed;
 
     thead,
-    tbody {
+    tbody,
+    tfoot {
         tr {
-            border: 1px solid $zinc-700;
+            th {
+                padding: 10px;
+            }
         }
 
         td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
             padding: 10px;
             border: 1px solid $zinc-700;
+        }
+
+        tr,
+        td {
+            .text-center {
+                text-align: center;
+            }
+
+            .text-right {
+                text-align: right;
+            }
+        }
+    }
+}
+
+@media screen and (width <= 650px) {
+    table {
+        th,
+        tr,
+        td {
+            font-size: 12px;
+        }
+    }
+}
+
+@media screen and (width <= 537px) {
+    table {
+        th,
+        tr,
+        td {
+            font-size: 11px;
+        }
+    }
+}
+
+@media screen and (width <= 487px) {
+    table {
+        th,
+        tr,
+        td {
+            font-size: 10px;
+        }
+    }
+}
+
+@media screen and (width <= 475px) {
+    table {
+        th,
+        tr,
+        td {
+            font-size: 8px;
+        }
+    }
+}
+
+@media screen and (width <= 400px) {
+    table {
+        th,
+        tr,
+        td {
+            font-size: 5px;
         }
     }
 }

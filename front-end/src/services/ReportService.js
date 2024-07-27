@@ -9,10 +9,11 @@ class ReportService {
     /**
      * Fetch Reports
      * @param {Boolean} self - If the reports are the user's own reports
+     * @param {Object} params - The query to filter the reports
      * @returns {Promise} - The promise object of the API call
      */
-    fetchReportsList(self) {
-        return axios.get(`reports/${self ? 'my' : ''}`)
+    fetchReportsList(self, params) {
+        return axios.get(`reports/${self ? 'my' : ''}`, { params })
     }
 
     /**

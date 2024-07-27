@@ -8,6 +8,11 @@ export const useReportStore = defineStore('reportStore', {
         list: {
             state: 'loading',
             data: [],
+            totals: {
+                totalAmountR: 0,
+                totalAmountTG: 0,
+                totalDeliveries: 0,
+            },
         },
         create: {
             state: 'loading',

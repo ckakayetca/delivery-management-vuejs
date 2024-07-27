@@ -7,25 +7,27 @@ import { useToast } from 'vue-toastification'
  * Fetch Reports list
  * Action to fetch the reports list
  * @param {Boolean} self - If the reports are the user's own reports
+ * @param {Object} query - The query to filter the reports
  * @returns {Object} - The response
  */
-export default async function fetchReportsList(self = false) {
+export default async function fetchReportsList(self = false, query) {
     const store = useReportStore()
     const toast = useToast()
 
     store.list.state = 'loading'
 
     try {
-        const response = await ReportService.fetchReportsList(self)
+        const response = await ReportService.fetchReportsList(self, query)
 
         if (response.status === 200) {
-            console.log('Fetched reports list: ', response.data)
-            store.list.data = response.data
+            console.log('Fetched reports list: ', response.data.reports)
+            store.list.data = response.data.reports
+            store.list.totals = response.data.totals
             store.list.state = 'loaded'
 
             return {
                 status: response.status,
-                data: response.data,
+                data: response.data.reports,
             }
         } else {
             store.list.state = 'error'
