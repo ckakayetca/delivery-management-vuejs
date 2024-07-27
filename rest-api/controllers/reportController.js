@@ -8,11 +8,24 @@ const { isAuth } = require('../middlewares/auth')
 // get all reports
 router.get('/', async (req, res) => {
     try {
-        let reports = await reportManager.getAll(req.query?.type)
+        let reports = await reportManager.getAll(req.query)
 
-        res.status(200).json(reports)
+        const totalDeliveries = reports.reduce((acc, report) => acc + report.deliveriesR + report.deliveriesTG, 0)
+        const totalAmount = reports.reduce((acc, report) => acc + report.totalAmount, 0).toFixed(2)
+        const totalAmountR = reports.reduce((acc, report) => acc + report.amountR, 0).toFixed(2)
+        const totalAmountTG = reports.reduce((acc, report) => acc + report.amountTG, 0).toFixed(2)
+
+        res.status(200).json({
+            reports,
+            totals: {
+                totalAmount,
+                totalAmountR,
+                totalAmountTG,
+                totalDeliveries,
+            },
+        })
     } catch (error) {
-        res.send(error)
+        res.status(500).send(error)
     }
 })
 
@@ -21,11 +34,24 @@ router.get('/my', isAuth, async (req, res) => {
     try {
         let id = req.user._id
 
-        const reports = await reportManager.getMyReports(id)
+        const reports = await reportManager.getMyReports(id, req.query)
 
-        res.status(200).json(reports)
+        const totalDeliveries = reports.reduce((acc, report) => acc + report.deliveriesR + report.deliveriesTG, 0)
+        const totalAmount = reports.reduce((acc, report) => acc + report.totalAmount, 0).toFixed(2)
+        const totalAmountR = reports.reduce((acc, report) => acc + report.amountR, 0).toFixed(2)
+        const totalAmountTG = reports.reduce((acc, report) => acc + report.amountTG, 0).toFixed(2)
+
+        res.status(200).json({
+            reports,
+            totals: {
+                totalAmount,
+                totalAmountR,
+                totalAmountTG,
+                totalDeliveries,
+            },
+        })
     } catch (error) {
-        res.send(error)
+        res.status(500).send(error)
     }
 })
 
