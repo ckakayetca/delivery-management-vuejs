@@ -37,7 +37,7 @@
 
     import { useRestaurantStore } from '@/stores/restaurant'
 
-    import { readableDate } from '@/utils/utils'
+    import { readableDate } from '@/utils/date'
 
     const props = defineProps({
         modelValue: {

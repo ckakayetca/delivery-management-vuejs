@@ -3,9 +3,8 @@
         <label :for="name">{{ label }} <span v-if="required">*</span></label>
 
         <select :id="name" :name="name" v-bind="$attrs" @input="onChange">
-            <option value="" disabled>Изберете...</option>
             <option
-                v-for="option in options"
+                v-for="option in formattedOptions"
                 :key="option.value"
                 :selected="modelValue?.value === option.value"
                 :value="option.value"
@@ -21,6 +20,7 @@
 </template>
 
 <script setup>
+    import { computed } from 'vue'
     import { onMounted, watch } from 'vue'
 
     const emit = defineEmits(['update:modelValue'])
@@ -61,9 +61,26 @@
         return props.options.find((option) => option.value === value) ?? value
     }
 
+    const formattedOptions = computed(() => {
+        return props.options.map((option) => {
+            if (typeof option === 'string') {
+                return {
+                    label: option,
+                    value: option,
+                }
+            }
+
+            return option
+        })
+    })
+
     watch(
         () => props.modelValue,
         (value) => {
+            if (!value) {
+                return
+            }
+
             if (!value.label || !value.value) {
                 emit('update:modelValue', findOptionByValue(value))
                 return

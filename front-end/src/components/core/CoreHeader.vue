@@ -18,16 +18,25 @@
                             <button class="button secondary no-border">Администраторски панел</button>
                         </router-link>
                     </li>
+
                     <li>
                         <router-link :to="{ name: 'NewReport' }">
                             <button class="button secondary no-border">Нов отчет</button>
                         </router-link>
                     </li>
+
                     <li>
                         <router-link :to="{ name: 'MyReports' }">
                             <button class="button secondary no-border">Моите отчети</button>
                         </router-link>
                     </li>
+
+                    <li>
+                        <router-link :to="{ name: 'MyReports' }">
+                            <button class="button secondary no-border">Седмичен отчет</button>
+                        </router-link>
+                    </li>
+
                     <li><button class="button primary" @click="onLogout">Изход</button></li>
                 </template>
                 <li v-else>
@@ -51,7 +60,9 @@
 
                             <router-link :to="{ name: 'NewReport' }">Нов отчет</router-link>
 
-                            <router-link :to="{ name: 'MyReports' }">Моите отчети</router-link>
+                            <router-link :to="{ name: 'MyReports', query: lastWeek() }">Моите отчети</router-link>
+
+                            <router-link :to="{ name: 'MyReports', query: thisWeek() }">Седмичен отчет</router-link>
 
                             <a href="#" @click="onLogout">Изход</a>
                         </template>
@@ -66,7 +77,9 @@
     import { ref } from 'vue'
 
     import { useRoute, useRouter } from 'vue-router'
-    import { useAuthStore } from '../../stores/authStore'
+    import { useAuthStore } from '@/stores/authStore'
+
+    import { thisWeek, lastWeek } from '@/utils/date'
 
     const mobileMenu = ref(null)
     const showMenu = ref(false)
@@ -92,7 +105,6 @@
     }
 
     function onClick(event) {
-        console.log('onClick')
         if (mobileMenu.value && !mobileMenu.value.contains(event.target)) {
             showMenu.value = false
             document.removeEventListener('click', onClick, true)

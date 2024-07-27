@@ -104,7 +104,7 @@
 
     import { useReportStore } from '@/stores/report'
 
-    import { readableDate } from '@/utils/utils'
+    import { readableDate } from '@/utils/date'
 
     const emit = defineEmits(['update:modelValue'])
 

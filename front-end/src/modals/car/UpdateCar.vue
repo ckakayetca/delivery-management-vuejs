@@ -66,7 +66,7 @@
 
     import { useCarStore } from '@/stores/car'
 
-    import { readableDate } from '@/utils/utils'
+    import { readableDate } from '@/utils/date'
 
     const props = defineProps({
         modelValue: {
@@ -150,7 +150,5 @@
         setFieldValue('insuranceDueDate', readableDate(props.carDetails.insuranceDueDate))
         setFieldValue('motDate', readableDate(props.carDetails.motDate))
         setFieldValue('nextOilChange', props.carDetails.nextOilChange)
-
-        console.log(readableDate(props.carDetails.insuranceDueDate))
     })
 </script>
