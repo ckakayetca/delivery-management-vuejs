@@ -50,4 +50,23 @@ userSchema.pre('save', async function (next) {
 
 const User = mongoose.model('User', userSchema)
 
+User.seed = async () => {
+    process.stdout.write('Seeding users...... ')
+
+    await User.collection.drop()
+    // create first user if none exists
+    let users = await User.find()
+    if (!users.length) {
+        await User.create({
+            username: 'admin',
+            name: 'Super Admin',
+            role: 'admin',
+            password: 'admin',
+            tel: '0877000000',
+        })
+    }
+
+    process.stdout.write('Done!\n')
+}
+
 module.exports = User

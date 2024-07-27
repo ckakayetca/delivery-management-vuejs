@@ -60,6 +60,15 @@ reportSchema.pre('save', function (next) {
 
     next()
 })
+
 const Report = mongoose.model('Report', reportSchema)
+
+Report.seed = async () => {
+    process.stdout.write('Seeding reports...... ')
+
+    await Report.collection.drop()
+
+    process.stdout.write('Done!\n')
+}
 
 module.exports = Report
