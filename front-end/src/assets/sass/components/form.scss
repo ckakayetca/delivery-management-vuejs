@@ -38,31 +38,31 @@ form {
         display: flex;
         flex-direction: column;
         gap: 10px;
-
-        label {
-            font-size: 16px;
-            font-weight: 500;
-            width: fit-content;
-        }
-
-        input,
-        select,
-        .datepicker {
-            padding: 10px 15px;
-            min-height: 40px;
-            font-size: 14px;
-            color: $slate-50;
-            border: 1px solid $zinc-700;
-            border-radius: 8px;
-            background-color: $zinc-800;
-
-            &:focus {
-                outline: none;
-            }
-        }
-
-        .datepicker {
-            width: 100%;
-        }
     }
+}
+
+label {
+    font-size: 16px;
+    font-weight: 500;
+    width: fit-content;
+}
+
+input,
+select,
+.datepicker {
+    padding: 10px 15px;
+    min-height: 40px;
+    font-size: 14px;
+    color: $slate-50;
+    border: 1px solid $zinc-700;
+    border-radius: 8px;
+    background-color: $zinc-800;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.datepicker {
+    width: 100%;
 }
