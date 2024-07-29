@@ -6,10 +6,6 @@
                 <button class="button secondary">Моите отчети</button>
             </router-link>
 
-            <router-link :to="{ name: 'MyReports' }">
-                <button class="button secondary">Седмичен отчет</button>
-            </router-link>
-
             <router-link :to="{ name: 'NewReport' }">
                 <button class="button primary">Нов отчет</button>
             </router-link>

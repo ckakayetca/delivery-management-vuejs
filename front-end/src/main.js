@@ -12,7 +12,7 @@ app.component('Loader', Loader)
 app.use(Toast, {
     position: POSITION.TOP_CENTER,
 })
-
 app.use(pinia)
 app.use(router)
+
 app.mount('#app')

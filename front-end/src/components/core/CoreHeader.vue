@@ -62,8 +62,6 @@
 
                             <router-link :to="{ name: 'MyReports', query: lastWeek() }">Моите отчети</router-link>
 
-                            <router-link :to="{ name: 'MyReports', query: thisWeek() }">Седмичен отчет</router-link>
-
                             <a href="#" @click="onLogout">Изход</a>
                         </template>
                     </div>
