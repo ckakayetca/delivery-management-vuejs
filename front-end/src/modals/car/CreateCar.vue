@@ -6,11 +6,11 @@
             </div>
 
             <div class="form-content">
-                <FormInput v-model="make" name="make" label="Марка" :error="errors.make" required />
+                <FormInput v-model="make" name="make" label="Марка" :error="errors.make" required autofocus />
 
                 <FormInput v-model="model" name="model" label="Модел" :error="errors.model" required />
 
-                <FormInput v-model="color" name="color" label="Цвят" :error="errors.color" required />
+                <FormInput v-model="color" name="color" label="Цвят" :error="errors.color" />
 
                 <FormInput
                     v-model="registration"
@@ -65,6 +65,7 @@
     import FormInput from '@/components/shared/FormInput.vue'
 
     import { useCarStore } from '@/stores/car'
+    import { onMounted } from 'vue'
 
     const props = defineProps({
         modelValue: {
@@ -120,6 +121,10 @@
 
         formLoading.value = false
     }
+
+    onMounted(() => {
+        document.getElementById('make').focus()
+    })
 
     watch(showModal, () => {
         emit('update:modelValue', showModal.value)

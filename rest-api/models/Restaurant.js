@@ -27,18 +27,18 @@ Restaurant.seed = async () => {
 
     const restaurants = [
         {
-            name: 'McDonalds',
-            address: '123 Fake Street',
+            name: 'Манастирски Ливади',
+            address: 'ул. Пирин 89',
             phoneNumber: '1234567890',
         },
         {
-            name: 'KFC',
-            address: '456 Fake Street',
+            name: 'Гоце Делчев',
+            address: 'ул. Кестенова гора 19',
             phoneNumber: '0987654321',
         },
         {
-            name: 'Burger King',
-            address: '789 Fake Street',
+            name: 'Черковна',
+            address: 'ул. Русалка 28',
             phoneNumber: '1357924680',
         },
     ]

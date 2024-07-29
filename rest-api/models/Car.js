@@ -12,7 +12,6 @@ const carSchema = new mongoose.Schema(
         },
         color: {
             type: String,
-            required: true,
         },
         registration: {
             type: String,
@@ -43,28 +42,28 @@ Car.seed = async () => {
 
     const cars = [
         {
-            make: 'Toyota',
-            model: 'Corolla',
-            color: 'Red',
-            registration: 'ABC123',
+            make: 'Тойота',
+            model: 'Айго',
+            color: 'Сива',
+            registration: 'СВ0535РТ',
             insuranceDueDate: new Date(),
             motDate: new Date(),
             nextOilChange: 1000,
         },
         {
-            make: 'Toyota',
-            model: 'Corolla',
-            color: 'Blue',
-            registration: 'DEF456',
+            make: 'Пежо',
+            model: '107',
+            color: 'Лилаво',
+            registration: 'СВ2333СР',
             insuranceDueDate: new Date(),
             motDate: new Date(),
             nextOilChange: 1000,
         },
         {
-            make: 'Toyota',
-            model: 'Corolla',
-            color: 'Green',
-            registration: 'GHI789',
+            make: 'Шевролет',
+            model: 'Авео',
+            color: 'Син',
+            registration: 'СВ1950ТР',
             insuranceDueDate: new Date(),
             motDate: new Date(),
             nextOilChange: 1000,

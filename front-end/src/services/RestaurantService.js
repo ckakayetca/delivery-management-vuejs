@@ -30,7 +30,7 @@ class RestaurantService {
      * @returns {Promise} - The promise object of the API call
      */
     updateRestaurant(id, data) {
-        return axios.put(`restaurants/${id}`, data)
+        return axios.patch(`restaurants/${id}`, data)
     }
 
     /**

@@ -1,11 +1,11 @@
 <template>
     <Teleport to="body">
         <div v-if="modelValue" class="modal-container">
-            <div ref="modalElement" class="modal">
+            <dialog ref="modalElement" class="modal">
                 <i class="icon-cross modal-close-btn" @click="closeModal" />
 
                 <slot />
-            </div>
+            </dialog>
         </div>
     </Teleport>
 </template>
@@ -29,6 +29,7 @@
     const modalElement = ref(null)
 
     function closeModal() {
+        document.body.classList.remove('has-open-modal')
         emit('update:modelValue', false)
     }
 
@@ -37,11 +38,12 @@
         if (modalElement.value && modalElement.value != event.target && !modalElement.value.contains(event.target)) {
             document.removeEventListener('click', onOutsideClick, true)
 
-            emit('update:modelValue', false)
+            closeModal()
         }
     }
 
     onMounted(() => {
         document.addEventListener('click', onOutsideClick, true)
+        document.body.classList.add('has-open-modal')
     })
 </script>

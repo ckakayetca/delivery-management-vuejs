@@ -8,17 +8,21 @@ const toast = useToast()
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
-        user: emptyUser,
+        user: null,
         isLoggedIn: false,
         isAdmin: false,
     }),
     actions: {
         async init() {
+            if (this.isLoggedIn) return { status: 200 }
+
             const response = await AuthService.getProfile()
 
             if (response.status === 200) {
                 this.setUser(response.data)
             }
+
+            return response
         },
         setUser(data) {
             this.user = data

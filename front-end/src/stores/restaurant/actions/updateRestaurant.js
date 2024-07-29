@@ -17,7 +17,7 @@ export default async function updateRestaurant(id, data) {
     try {
         const response = await RestaurantService.updateRestaurant(id, data)
 
-        if (response.status === 201) {
+        if (response.status === 200) {
             const restaurantIndex = store.list.data.findIndex((restaurant) => restaurant.id === id)
 
             if (restaurantIndex) {
