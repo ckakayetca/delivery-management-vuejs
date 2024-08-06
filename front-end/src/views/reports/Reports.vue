@@ -3,8 +3,15 @@
 
     <template v-else-if="reportStore.list.state === 'loaded'">
         <div class="reports">
+            <h1>{{ ownReports ? 'Моите отчети' : 'Отчети' }}</h1>
+
             <div class="filters-container">
                 <div class="filters">
+                    <div class="dual-box">
+                        <button class="button primary" @click="handleLastWeek">Миналата седмица</button>
+                        <button class="button primary" @click="handleThisWeek">Тази седмица</button>
+                    </div>
+
                     <FormInput
                         v-model="filters.start_date"
                         type="date"
@@ -12,17 +19,16 @@
                         name="start_date"
                         :max="new Date().toISOString().split('T')[0]"
                     />
+
                     <FormInput
                         v-model="filters.end_date"
                         type="date"
                         label="До"
                         name="end_date"
-                        :max="new Date().toISOString().split('T')[0]"
+                        :max="new Date(new Date().getTime() + day).toISOString().split('T')[0]"
                     />
                 </div>
             </div>
-
-            <h1>{{ ownReports ? 'Моите отчети' : 'Отчети' }}</h1>
 
             <template v-if="!reportStore.list.data.length">
                 <div>Няма намерени отчети</div>
@@ -58,7 +64,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3" class="text-right">Общо:</td>
+                            <td colspan="4" class="text-right">Общо:</td>
                             <td class="text-center">{{ reportStore.list.totals.totalAmountR }} лв</td>
                             <td class="text-center">{{ reportStore.list.totals.totalAmountTG }} лв</td>
                             <td colspan="2" class="text-center">{{ reportStore.list.totals.totalDeliveries }}</td>
@@ -66,6 +72,7 @@
                     </tfoot>
                 </table>
                 <h3 class="total-amount">Общ оборот: {{ reportStore.list.totals.totalAmount }} лв.</h3>
+                <button class="button primary">Генериране на доклад</button>
             </template>
         </div>
     </template>
@@ -86,7 +93,7 @@
 
     import { useRoute, useRouter } from 'vue-router'
 
-    import { fullDate, lastWeek, day } from '@/utils/date'
+    import { fullDate, lastWeek, thisWeek, day } from '@/utils/date'
 
     const route = useRoute()
     const router = useRouter()
@@ -100,6 +107,20 @@
                 obj[key] = value
                 return obj
             }, {})
+    }
+
+    function handleThisWeek() {
+        filters.value = {
+            ...filters.value,
+            ...thisWeek(),
+        }
+    }
+
+    function handleLastWeek() {
+        filters.value = {
+            ...filters.value,
+            ...lastWeek(),
+        }
     }
 
     const filters = ref({

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon .",
-    "seed": "node seeders.js"
+    "test": "nodemon --env-file=.env.development.local index.js",
+    "prod": "node --env-file=.env.production index.js",
+    "seed": "node seeders.js --env-file=.env.development.local"
   },
   "keywords": [],
   "author": "",

@@ -11,6 +11,10 @@
         <router-link :to="{ name: 'ReportsList' }">
             <button class="button primary">Отчети</button>
         </router-link>
+
+        <router-link :to="{ name: 'Register' }">
+            <button class="button primary">Нов потребител</button>
+        </router-link>
     </div>
 </template>
 

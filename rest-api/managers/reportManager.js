@@ -54,6 +54,7 @@ exports.getOne = async (id) => await Report.findById(id).populate('postedBy', { 
 // get someone's reports
 exports.getMyReports = async (id, query = {}) =>
     await Report.find({ ...transformQuery(query), postedBy: { _id: id } })
+        .populate('postedBy', 'name')
         .populate('car', 'color make model')
         .populate('restaurant', 'name')
         .lean()

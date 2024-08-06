@@ -26,14 +26,8 @@
                     </li>
 
                     <li>
-                        <router-link :to="{ name: 'MyReports' }">
+                        <router-link :to="{ name: 'MyReports', query: thisWeek() }">
                             <button class="button secondary no-border">Моите отчети</button>
-                        </router-link>
-                    </li>
-
-                    <li>
-                        <router-link :to="{ name: 'MyReports' }">
-                            <button class="button secondary no-border">Седмичен отчет</button>
                         </router-link>
                     </li>
 
@@ -60,7 +54,7 @@
 
                             <router-link :to="{ name: 'NewReport' }">Нов отчет</router-link>
 
-                            <router-link :to="{ name: 'MyReports', query: lastWeek() }">Моите отчети</router-link>
+                            <router-link :to="{ name: 'MyReports', query: thisWeek() }">Моите отчети</router-link>
 
                             <a href="#" @click="onLogout">Изход</a>
                         </template>

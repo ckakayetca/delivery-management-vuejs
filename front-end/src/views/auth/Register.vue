@@ -1,8 +1,10 @@
 <template>
     <form action="" class="register" @submit.prevent="onSubmit">
-        <h1>Регистрация</h1>
+        <div class="form-header">
+            <h1>Регистрация</h1>
+        </div>
 
-        <fieldset>
+        <div class="form-content">
             <FormInput v-model="username" :error="errors.username" name="username" label="Потребителско име" required />
 
             <FormInput v-model="name" :error="errors.name" name="name" label="Име" required />
@@ -26,8 +28,11 @@
                 name="role"
                 label="Права"
             />
-        </fieldset>
-        <button>Продължи</button>
+        </div>
+
+        <div class="form-footer">
+            <button class="button primary">Продължи</button>
+        </div>
     </form>
 </template>
 

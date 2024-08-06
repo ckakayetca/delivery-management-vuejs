@@ -70,6 +70,6 @@ export function thisWeek() {
 
     return {
         start_date: readableDate(thisMonday),
-        end_date: readableDate(today),
+        end_date: readableDate(today.getTime() + day),
     }
 }
