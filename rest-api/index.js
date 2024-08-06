@@ -10,6 +10,6 @@ const PORT = process.env.API_PORT
 expressCfg(app)
 mongooseCfg()
 
-app.use(router)
+app.use('/api', router)
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}...`))
