@@ -4,6 +4,7 @@ import deleteReport from './deleteReport'
 import fetchReportsList from './fetchReportsList'
 import fetchReportCreateData from './fetchReportCreateData'
 import truncateReportsList from './truncateReportsList'
+import generateSpreadsheet from './generateSheet'
 
 export default {
     createReport,
@@ -12,4 +13,5 @@ export default {
     deleteReport,
     fetchReportsList,
     truncateReportsList,
+    generateSpreadsheet,
 }

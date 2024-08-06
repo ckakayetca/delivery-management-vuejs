@@ -60,6 +60,15 @@ class ReportService {
     deleteReport(id) {
         return axios.delete(`reports/${id}`)
     }
+
+    /**
+     * Generate Spreadsheet
+     * @param {Object} body - the body of the request
+     * @returns {Promise} - The promise object of the API call
+     */
+    generateSpreadsheet(body) {
+        return axios.post(`reports/generate`, body, { responseType: 'blob' })
+    }
 }
 
 export default new ReportService()

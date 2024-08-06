@@ -72,7 +72,7 @@
                     </tfoot>
                 </table>
                 <h3 class="total-amount">Общ оборот: {{ reportStore.list.totals.totalAmount }} лв.</h3>
-                <button class="button primary">Генериране на доклад</button>
+                <button class="button primary" @click="handleSheetGenerate">Генериране на доклад</button>
             </template>
         </div>
     </template>
@@ -121,6 +121,15 @@
             ...filters.value,
             ...lastWeek(),
         }
+    }
+
+    async function handleSheetGenerate() {
+        const response = await reportStore.generateSpreadsheet(filters.value)
+
+        let link = document.createElement('a')
+        link.href = window.URL.createObjectURL(response.data)
+        link.download = 'nameofFile' + '.xlsx'
+        link.click()
     }
 
     const filters = ref({

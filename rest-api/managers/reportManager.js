@@ -40,9 +40,10 @@ exports.create = (data, ownerId) =>
 // get all reports
 exports.getAll = async (query = {}) => {
     let reports = await Report.find(transformQuery(query))
-        .populate('postedBy', { password: 0, __v: 0 })
+        .populate('postedBy', 'name')
         .populate('car', 'color make model registration')
         .populate('restaurant', 'name')
+        .sort({ created_at: 'desc' })
         .lean()
 
     return reports
@@ -57,6 +58,7 @@ exports.getMyReports = async (id, query = {}) =>
         .populate('postedBy', 'name')
         .populate('car', 'color make model')
         .populate('restaurant', 'name')
+        .sort({ created_at: 'desc' })
         .lean()
 
 // edit report
