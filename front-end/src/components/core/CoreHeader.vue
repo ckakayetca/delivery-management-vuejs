@@ -1,67 +1,69 @@
 <template>
     <header class="nav-header">
-        <nav>
-            <ul>
-                <li>
-                    <router-link :to="{ name: 'Home' }">
-                        <button class="button secondary">
-                            <i class="icon-home" />
-                        </button>
-                    </router-link>
-                </li>
-            </ul>
-
-            <ul class="desktop">
-                <template v-if="authStore.isLoggedIn">
-                    <li v-if="authStore.isAdmin">
-                        <router-link :to="{ name: 'AdminPanel' }">
-                            <button class="button secondary no-border">Администраторски панел</button>
-                        </router-link>
-                    </li>
-
+        <template v-if="authStore.isLoggedIn">
+            <nav>
+                <ul>
                     <li>
-                        <router-link :to="{ name: 'NewReport' }">
-                            <button class="button secondary no-border">Нов отчет</button>
+                        <router-link :to="{ name: 'Home' }">
+                            <button class="button secondary">
+                                <i class="icon-home" />
+                            </button>
                         </router-link>
                     </li>
+                </ul>
 
-                    <li>
-                        <router-link :to="{ name: 'MyReports', query: thisWeek() }">
-                            <button class="button secondary no-border">Моите отчети</button>
-                        </router-link>
-                    </li>
-
-                    <li><button class="button primary" @click="onLogout">Изход</button></li>
-                </template>
-                <li v-else>
-                    <router-link :to="{ name: 'Login' }">
-                        <button class="button secondary">Вход</button>
-                    </router-link>
-                </li>
-            </ul>
-
-            <div class="mobile">
-                <button class="button secondary menu-btn" @click="toggleMenu">
-                    <i class="icon-user" />
-                </button>
-
-                <div v-if="showMenu" ref="mobileMenu" class="mobile-menu" @click="toggleMenu">
-                    <div class="links">
-                        <template v-if="authStore.isLoggedIn">
-                            <router-link v-if="authStore.isAdmin" :to="{ name: 'AdminPanel' }">
-                                Администраторски панел
+                <ul class="desktop">
+                    <template v-if="authStore.isLoggedIn">
+                        <li v-if="authStore.isAdmin">
+                            <router-link :to="{ name: 'AdminPanel' }">
+                                <button class="button secondary no-border">Администраторски панел</button>
                             </router-link>
+                        </li>
 
-                            <router-link :to="{ name: 'NewReport' }">Нов отчет</router-link>
+                        <li>
+                            <router-link :to="{ name: 'NewReport' }">
+                                <button class="button secondary no-border">Нов отчет</button>
+                            </router-link>
+                        </li>
 
-                            <router-link :to="{ name: 'MyReports', query: thisWeek() }">Моите отчети</router-link>
+                        <li>
+                            <router-link :to="{ name: 'MyReports', query: thisWeek() }">
+                                <button class="button secondary no-border">Моите отчети</button>
+                            </router-link>
+                        </li>
 
-                            <a href="#" @click="onLogout">Изход</a>
-                        </template>
+                        <li><button class="button primary" @click="onLogout">Изход</button></li>
+                    </template>
+                    <li v-else>
+                        <router-link :to="{ name: 'Login' }">
+                            <button class="button secondary">Вход</button>
+                        </router-link>
+                    </li>
+                </ul>
+
+                <div class="mobile">
+                    <button class="button secondary menu-btn" @click="toggleMenu">
+                        <i class="icon-user" />
+                    </button>
+
+                    <div v-if="showMenu" ref="mobileMenu" class="mobile-menu" @click="toggleMenu">
+                        <div class="links">
+                            <template v-if="authStore.isLoggedIn">
+                                <router-link v-if="authStore.isAdmin" :to="{ name: 'AdminPanel' }">
+                                    Администраторски панел
+                                </router-link>
+
+                                <router-link :to="{ name: 'NewReport' }">Нов отчет</router-link>
+
+                                <router-link :to="{ name: 'MyReports', query: thisWeek() }">Моите отчети</router-link>
+
+                                <a href="#" @click="onLogout">Изход</a>
+                            </template>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </template>
     </header>
 </template>
 

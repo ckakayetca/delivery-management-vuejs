@@ -34,6 +34,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    active: {
+        type: Boolean,
+        default: true,
+    },
     reports: [
         {
             type: mongoose.Types.ObjectId,

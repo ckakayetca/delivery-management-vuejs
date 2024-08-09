@@ -47,7 +47,7 @@ h6 {
     margin: auto;
     max-width: 1280px;
     width: 100%;
-    padding: 10px;
+    padding: 30px 10px;
     height: auto;
     flex: 1 0 auto;
     display: flex;
@@ -56,6 +56,10 @@ h6 {
 
 ul {
     list-style: none;
+}
+
+.admin-panel-menu {
+    max-width: 600px;
 }
 
 // iOS datepicker fix

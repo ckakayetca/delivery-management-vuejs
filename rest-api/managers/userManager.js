@@ -35,7 +35,7 @@ exports.login = async (userData) => {
 
 // get users list
 exports.getUsers = async () => {
-    let users = await User.find().populate('reports').lean()
+    let users = await User.find({}, { password: 0, __v: 0 }).lean()
 
     return users
 }
@@ -43,6 +43,9 @@ exports.getUsers = async () => {
 // get profile info
 exports.getInfo = async (id) => {
     let user = await User.findOne({ _id: id }, { password: 0, __v: 0 }).populate('reports')
+
+    console.log(user)
+
     if (!user) {
         throw new Error('No such user!')
     }

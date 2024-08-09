@@ -42,9 +42,10 @@ router.beforeEach(async (to, from) => {
 
     // init of authStore sets the isLoggedIn and isAdmin properties
     // if I don't empty-catch this, the app will crash because of 401 response
-    await authStore.init().catch((err) => { })
+    // await authStore.init().catch((err) => { })
 
     if (!authStore.isLoggedIn && ['auth', 'admin'].includes(to.meta.guard)) {
+        console.log('is logged in: ', authStore.isLoggedIn)
         return { name: 'Login' }
     }
 

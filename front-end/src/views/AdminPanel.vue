@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex flex-col">
+    <div class="admin-panel-menu w-full flex flex-col">
         <router-link :to="{ name: 'CarsList' }">
             <button class="button secondary">Коли</button>
         </router-link>

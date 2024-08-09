@@ -5,7 +5,7 @@ exports.create = async (data) => await Restaurant.create(data)
 
 // get all restaurants
 exports.getAll = async (select) => {
-    let restaurants = await Restaurant.find().sort({ created_at: -1 }).lean()
+    let restaurants = await Restaurant.find({ active: true }).sort({ created_at: -1 }).lean()
 
     if (select) {
         restaurants = restaurants.map((r) => {
@@ -23,4 +23,4 @@ exports.getAll = async (select) => {
 exports.edit = async (id, data) => await Restaurant.findByIdAndUpdate(id, data)
 
 // delete restaurant
-exports.del = async (id) => await Restaurant.findByIdAndDelete(id)
+exports.del = async (id) => await Restaurant.findByIdAndUpdate(id, { active: false })

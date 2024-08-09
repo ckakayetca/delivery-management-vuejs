@@ -17,8 +17,6 @@ export default async function generateSpreadsheet(query) {
     try {
         const response = await ReportService.generateSpreadsheet(query)
 
-        console.log(response)
-
         if (response.status === 201) {
             toast.success('Успешно генериране на доклад.')
 

@@ -5,7 +5,7 @@ exports.create = async (data) => await Car.create(data)
 
 // get all cars
 exports.getAll = async (select) => {
-    let cars = await Car.find().sort({ created_at: -1 }).lean()
+    let cars = await Car.find({ active: true }).sort({ created_at: -1 }).lean()
 
     if (select) {
         cars = cars.map((r) => {
@@ -23,4 +23,4 @@ exports.getAll = async (select) => {
 exports.edit = async (id, data) => await Car.findByIdAndUpdate(id, data)
 
 // delete car
-exports.del = async (id) => await Car.findByIdAndDelete(id)
+exports.del = async (id) => await Car.findByIdAndUpdate(id, { active: false })

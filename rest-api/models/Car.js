@@ -29,6 +29,10 @@ const carSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
+        active: {
+            type: Boolean,
+            default: true,
+        },
     },
     { timestamps: { createdAt: 'created_at' } },
 )

@@ -126,10 +126,12 @@
     async function handleSheetGenerate() {
         const response = await reportStore.generateSpreadsheet(filters.value)
 
-        let link = document.createElement('a')
-        link.href = window.URL.createObjectURL(response.data)
-        link.download = 'nameofFile' + '.xlsx'
-        link.click()
+        if (response.status === 201) {
+            let link = document.createElement('a')
+            link.href = window.URL.createObjectURL(response.data)
+            link.download = `spravka1.xlsx`
+            link.click()
+        }
     }
 
     const filters = ref({
@@ -150,10 +152,12 @@
     watch(
         () => route.query,
         () => {
-            reportStore.fetchReportsList(ownReports.value, filterQuery(route.query))
+            if (route.name === 'ReportsList') {
+                reportStore.fetchReportsList(ownReports.value, filterQuery(route.query))
 
-            filters.value.start_date = route.query.start_date ?? null
-            filters.value.end_date = route.query.end_date ?? null
+                filters.value.start_date = route.query.start_date ?? null
+                filters.value.end_date = route.query.end_date ?? null
+            }
         },
     )
 
