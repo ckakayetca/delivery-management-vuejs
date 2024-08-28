@@ -164,8 +164,6 @@
     watch(
         filters,
         (newValue) => {
-            console.log('Watcher!', newValue)
-
             if (newValue.start_date) {
                 // if the start date is set, set the end date to the current date if it's not set
                 const startDate = new Date(newValue.start_date).getTime()

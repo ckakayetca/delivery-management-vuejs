@@ -221,8 +221,6 @@
                 fuel: fuel.value ?? 0,
             }
 
-            console.log('Sending:', formData)
-
             const response = await reportStore.createReport(formData)
 
             if (response.status === 201) {

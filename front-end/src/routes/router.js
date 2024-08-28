@@ -45,7 +45,6 @@ router.beforeEach(async (to, from) => {
     // await authStore.init().catch((err) => { })
 
     if (!authStore.isLoggedIn && ['auth', 'admin'].includes(to.meta.guard)) {
-        console.log('is logged in: ', authStore.isLoggedIn)
         return { name: 'Login' }
     }
 

@@ -233,40 +233,4 @@ router.post('/generate', isAdmin, async (req, res) => {
     }
 })
 
-const json = [
-    // {
-    //     _id: new ObjectId("66b262e01d300914438ec2f1"),
-    //     date: 2024 -08-06T00:00:00.000Z,
-    //     restaurant: {
-    //         _id: new ObjectId("66b257eecb25fce77ce71453"),
-    //         name: 'Манастирски Ливади'
-    //     },
-    //     amountR: 133.2,
-    //     deliveriesR: 10,
-    //     amountTG: 534.24,
-    //     deliveriesTG: 15,
-    //     car: {
-    //         _id: new ObjectId("66b257eecb25fce77ce7144b"),
-    //         make: 'Тойота',
-    //         model: 'Айго',
-    //         color: 'Сива',
-    //         registration: 'СВ0535РТ'
-    //     },
-    //     fuel: 31.1,
-    //     postedBy: {
-    //         _id: new ObjectId("66b257eecb25fce77ce7145c"),
-    //         username: 'admin',
-    //         name: 'Super Admin',
-    //         role: 'admin',
-    //         tel: '0877000000',
-    //         reports: [Array]
-    //     },
-    //     created_at: 2024 -08-06T17: 52: 32.700Z,
-    //     updatedAt: 2024 -08-06T17: 52: 32.700Z,
-    //     totalAmount: 667.44,
-    //     totalDeliveries: 25,
-    //     __v: 0
-    // },
-]
-
 module.exports = router
