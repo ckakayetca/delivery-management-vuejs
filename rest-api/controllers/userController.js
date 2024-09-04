@@ -1,9 +1,8 @@
 const router = require('express').Router()
 const { isAuth, isAdmin } = require('../middlewares/auth')
-const { register, login, getInfo, editInfo, verifyToken, getUsers } = require('../managers/userManager')
+const { register, login, getInfo, editInfo, verifyToken, getUsers, deleteUser } = require('../managers/userManager')
 
 // verify jwt
-
 router.get('/', async (req, res) => {
     const token = req.cookies['auth']
     if (!token) {
@@ -16,7 +15,6 @@ router.get('/', async (req, res) => {
 })
 
 // get all users
-
 router.get('/all', isAdmin, async (req, res) => {
     try {
         const users = await getUsers()
@@ -28,7 +26,6 @@ router.get('/all', isAdmin, async (req, res) => {
 })
 
 // login
-
 router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body
@@ -44,7 +41,6 @@ router.post('/login', async (req, res) => {
 })
 
 // register
-
 router.post('/register', async (req, res) => {
     try {
         const { username, password, role, tel, name } = req.body
@@ -61,7 +57,6 @@ router.post('/register', async (req, res) => {
 })
 
 // logout
-
 router.get('/logout', (req, res) => {
     try {
         res.clearCookie('auth').status(200).json({ message: 'Logged out!' })
@@ -71,11 +66,10 @@ router.get('/logout', (req, res) => {
 })
 
 // get profile info
-
 router.get('/profile', async (req, res) => {
     const id = req.user?._id
     try {
-        let user = await getInfo(id)
+        const user = await getInfo(id)
         res.status(200).json(user)
     } catch (error) {
         res.status(403).json({ message: error.message })
@@ -83,17 +77,30 @@ router.get('/profile', async (req, res) => {
 })
 
 // edit profile info
-
-router.patch('/profile', isAuth, async (req, res) => {
-    const id = req.user._id
-    const { username, password, role } = req.body
+router.patch('/:id', isAuth, async (req, res) => {
+    const id = req.params.id
+    const data = req.body
 
     try {
-        let newUser = await editInfo(id, { username, password, role })
+        const newUser = await editInfo(id, data)
 
         res.status(200).json(newUser)
     } catch (error) {
         res.status(500).json({ message: error })
+    }
+})
+
+// delete (deactivate) user
+router.delete('/:id', isAdmin, async (req, res) => {
+    const id = req.params.id
+
+    try {
+        await deleteUser(id)
+
+        res.status(204)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
     }
 })
 

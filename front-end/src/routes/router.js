@@ -4,12 +4,13 @@ import Login from '../views/auth/Login.vue'
 import Register from '../views/auth/Register.vue'
 import NewReport from '../views/reports/NewReport.vue'
 import Reports from '../views/reports/Reports.vue'
-import Error from '../views/Error.vue'
 import Home from '../views/Home.vue'
-import NotFound from '../views/NotFound.vue'
 import AdminPanel from '../views/AdminPanel.vue'
 import Cars from '../views/cars/Cars.vue'
 import Restaurants from '../views/restaurants/Restaurants.vue'
+import Users from '../views/users/Users.vue'
+import Error from '../views/Error.vue'
+import NotFound from '../views/NotFound.vue'
 
 // guard:
 // 'none' - no guard
@@ -25,8 +26,9 @@ const routes = [
     { path: '/my-reports', name: 'MyReports', component: Reports, meta: { guard: 'auth' } },
     { path: '/cars', name: 'CarsList', component: Cars, meta: { guard: 'admin' } },
     { path: '/restaurants', name: 'RestaurantsList', component: Restaurants, meta: { guard: 'admin' } },
-    { path: '/error', name: 'Error', component: Error, props: true, meta: { guard: 'none' } },
+    { path: '/users', name: 'UsersList', component: Users, meta: { guard: 'admin' } },
     { path: '/admin-panel', name: 'AdminPanel', component: AdminPanel, meta: { guard: 'admin' } },
+    { path: '/error', name: 'Error', component: Error, props: true, meta: { guard: 'none' } },
     { path: '/:pathMatch(.*)*', component: NotFound, meta: { guard: 'none' } },
 ]
 
@@ -39,10 +41,6 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
     const authStore = useAuthStore()
-
-    // init of authStore sets the isLoggedIn and isAdmin properties
-    // if I don't empty-catch this, the app will crash because of 401 response
-    // await authStore.init().catch((err) => { })
 
     if (!authStore.isLoggedIn && ['auth', 'admin'].includes(to.meta.guard)) {
         return { name: 'Login' }

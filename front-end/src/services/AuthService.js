@@ -11,8 +11,8 @@ class AuthService {
      * @param {Object} data - The login data
      * @returns {Promise} - The promise object of the API call
      */
-    async login(data) {
-        return await axios.post('users/login', data)
+    login(data) {
+        return axios.post('users/login', data)
     }
 
     /**
@@ -20,40 +20,32 @@ class AuthService {
      * @param {Object} data - The registration data
      * @returns {Promise} - The promise object of the API call
      */
-    async register(data) {
-        return await axios.post('users/register', data)
+    register(data) {
+        return axios.post('users/register', data)
     }
 
     /**
      * Logout
      * @returns {Promise} - The promise object of the API call
      */
-    async logout() {
-        return await axios.get('users/logout')
+    logout() {
+        return axios.get('users/logout')
     }
 
     /**
      * Get Profile
      * @returns {Promise} - The promise object of the API call
      */
-    async getProfile() {
-        return await axios.get('users/profile')
-    }
-
-    /**
-     * Edit Profile
-     * @returns {Promise} - The promise object of the API call
-     */
-    async editProfile() {
-        return await axios.put('users/profile', data)
+    getProfile() {
+        return axios.get('users/profile')
     }
 
     /**
      * Verify Token
      * @returns {Promise} - The promise object of the API call
      */
-    async verifyToken() {
-        return await axios.get('users')
+    verifyToken() {
+        return axios.get('users')
     }
 }
 

@@ -44,8 +44,6 @@ exports.getUsers = async () => {
 exports.getInfo = async (id) => {
     let user = await User.findOne({ _id: id }, { password: 0, __v: 0 }).populate('reports')
 
-    console.log(user)
-
     if (!user) {
         throw new Error('No such user!')
     }
@@ -67,4 +65,8 @@ exports.verifyToken = (token) => {
     } catch (error) {
         return false
     }
+}
+
+exports.deleteUser = async (id) => {
+    await User.findByIdAndUpdate(id, { active: false })
 }

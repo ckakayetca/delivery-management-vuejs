@@ -12,8 +12,8 @@
     text-decoration: none;
 
     &.primary {
-        background-color: $zinc-700;
-        border-color: $zinc-700;
+        background-color: $zinc-800;
+        border-color: $zinc-800;
         color: $zinc-50;
     }
 
@@ -28,9 +28,9 @@
 
     &:disabled {
         cursor: not-allowed;
-        background-color: $zinc-400;
-        border-color: $zinc-400;
-        opacity: 0.3;
+        background-color: $zinc-500;
+        border-color: $zinc-500;
+        opacity: 0.2;
         transition: all 0.3s;
     }
 

@@ -12,6 +12,10 @@
             <button class="button primary">Отчети</button>
         </router-link>
 
+        <router-link :to="{ name: 'UsersList' }">
+            <button class="button primary">Потребители</button>
+        </router-link>
+
         <router-link :to="{ name: 'Register' }">
             <button class="button primary">Нов потребител</button>
         </router-link>
